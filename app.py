@@ -5,6 +5,8 @@ from pymongo import MongoClient
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin,current_user
 from bson import ObjectId  # Import ObjectId from bson module
 
+import uuid  # For generating unique IDs
+import smtplib  # For sending emails
 
 
 app = Flask(__name__)
@@ -21,6 +23,7 @@ db = client['MyHealth_Hero']
 users_collection = db['users']
 users_community = db['users_community']
 appointments_collection = db['appointments_collection']
+goals_collection = db['goals']
 
 
 
@@ -112,18 +115,42 @@ def logout():
 # ---------- home page ----------- 
 @app.route('/',methods=['GET','POST'])
 def home():
-    return render_template('index.html')
+    user_data = None
+
+    if current_user.is_authenticated:
+        user_data = users_collection.find_one({'username': current_user.username})
+
+    return render_template('index.html',user_data=user_data)
 
 
 
 
 # ------------- profile ------------- 
 
-@app.route('/profile',methods = ['GET','POST'])
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
+    user_data = None
+    appointments_data = None
 
-    user_data = users_collection.find_one({'username':current_user.username})
-    return render_template('profile.html',user_data= user_data)    
+    if current_user.is_authenticated:
+        user_data = users_collection.find_one({'username': current_user.username})
+        appointments_data = appointments_collection.find_one({'username': current_user.username})
+
+    doctor_name = None
+    time_slot = None
+    concern = None
+    google_meet_link = None
+
+    if appointments_data:
+        doctor_name = appointments_data.get('doctor_name')
+        time_slot = appointments_data.get('time_slot')
+        concern = appointments_data.get('concern')
+        google_meet_link = appointments_data.get('google_meet_link')
+
+    print(appointments_data)  # Print appointments_data for debugging
+  
+    return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link)
+  
 
 
 
@@ -231,9 +258,9 @@ def handle_booking():
         doctor_description = request.args.get('doctorDescription')
         rating = request.args.get('rating')
         image_url = request.args.get('imageUrl')
-        print(doctor_name)
-        print(doctor_description)
-        print(image_url)
+        # print(doctor_name)
+        # print(doctor_description)
+        # print(image_url)
         # If the route is accessed with a GET request (e.g., when rendering a template)
         # You can render the template here
         return render_template('book_appointment.html',doctor_name=doctor_name, doctor_description=doctor_description, rating=rating, image_url=image_url,user_data=user_data)
@@ -250,31 +277,148 @@ def handle_booking():
 @app.route('/submit_appointment', methods=['POST','GET'])
 def submit_appointment():
 
+    time_slot = None
+    concern = None
+    google_meet_link = None
+    doctor_name = None
+
     if request.method == 'POST':
       username = request.form['username']
+      doctor_name = request.form['doctor_name']
       time_slot = request.form['time_slot']
       concern = request.form['concern']
-      print(username)
-      print(time_slot)
-      print(concern)
+    #   print(username)
+    #   print(time_slot)
+    #   print(concern)
       # Insert the data into the appointment collection
+      # Generate a unique Google Meet link
+      google_meet_link = f'https://meet.google.com/{uuid.uuid4()}'
       appointment_data = {
             'username': username,
             'time_slot': time_slot,
-            'concern': concern
+            'concern': concern,
+            'google_meet_link': google_meet_link,
+            'doctor_name': doctor_name
        }
       appointments_collection.insert_one(appointment_data)      
 
       user_data = users_collection.find_one({'username': username})
 
+
+
+      # Send the Google Meet link to the user's email
+      user_data = users_collection.find_one({'username': username})
+      if user_data and 'email' in user_data:
+            send_email(user_data['email'], google_meet_link)    
       
 
 
         # Pass the extracted data to the HTML template
-    return render_template('profile.html',user_data=user_data)
+    return render_template('profile.html',user_data=user_data,time_slot=time_slot,concern=concern,google_meet_link=google_meet_link,doctor_name=doctor_name)
+
+
+def send_email(receiver_email, google_meet_link):
+    # Configure SMTP server settings
+    smtp_server = 'smtp.gmail.com'
+    smtp_port = 587
+    sender_email = 'pranavkolhe44@gmail.com'  # Admin email address
+    sender_password = 'rwlw qkfk xwqe jeir'  # Update with your email password
+
+    # Create SMTP server object
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    server.starttls()
+    server.login(sender_email, sender_password)
+
+    # Compose email message
+    subject = 'Google Meet Link for Appointment'
+    body = f'Here is your Google Meet link for the appointment: {google_meet_link}'
+    message = f'Subject: {subject}\n\n{body}'
+
+    # Send email
+    server.sendmail(sender_email, receiver_email, message)
+
+    # Close SMTP server connection
+    server.quit()
 
 
 
+
+
+
+
+
+
+# --------------- set goals by admin ------ 
+@app.route('/set_goals',methods = ['POST','GET'])
+def set_goals():
+    user_data = None
+
+    if current_user.is_authenticated:
+        user_data = users_collection.find_one({'username': current_user.username})
+
+
+
+    return render_template('set_goals.html',user_data=user_data)
+
+
+
+# --------------- search patient by doctor ------ 
+@app.route('/search_patient', methods=['POST', 'GET'])
+def search_patient():
+    user_data = None
+    patient_data = None
+
+    if current_user.is_authenticated:
+        user_data = users_collection.find_one({'username': current_user.username})
+
+    if request.method == 'POST':
+        username = request.form['username']
+        patient_data = appointments_collection.find_one({'username': username})
+
+    # Prepare patient data as JSON
+    patient_details = {
+        'name': patient_data.get('username', ''),
+        'concern': patient_data.get('concern', '')
+    }
+
+
+    # Return patient details as JSON response
+    return jsonify(patient_details)
+
+
+
+
+
+
+
+
+
+
+# -------------- add_goals------------
+@app.route('/add_goal', methods=['POST'])
+def add_goal():
+    # Retrieve data from the AJAX request
+    username = request.form['username']
+    goal_text = request.form['goal_text']
+    goal_id = request.form['goal_id']
+
+    # Assuming you have a collection named 'goals'
+    # You will need to update this to match your actual collection name
+    goals_collection = db.goals
+
+    # Update the document in the goals collection, or insert it if it doesn't exist
+    result = goals_collection.update_one(
+        {'username': username},
+        {'$push': {goal_id: goal_text}},
+        upsert=True
+    )
+
+    if result.upserted_id is not None:
+        message = 'Goal inserted successfully'
+    else:
+        message = 'Goal updated successfully'
+
+    return jsonify({'message': message})
 
 
 

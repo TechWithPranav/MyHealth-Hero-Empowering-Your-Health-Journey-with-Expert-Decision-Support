@@ -19,6 +19,12 @@
   
     {% include 'navbar.html'%}
 
+
+    {% if current_user.is_authenticated %}
+    <p>{{user_data.username}}</p>
+    {% else %}
+    <p>user is not logged in</p>
+    {% endif %}
       
       
 

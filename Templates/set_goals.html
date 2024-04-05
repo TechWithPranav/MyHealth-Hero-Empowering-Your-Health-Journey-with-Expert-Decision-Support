@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Goals</title>
+
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+   <!-- -------------navbar -------------------  -->
+
+   {% include 'navbar.html' %}
+
+
+   <!-- ---------- adding goals -------------  -->
+   <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <h1 class="text-center mb-4">Set Goals</h1>
+                <form id="patientForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Enter Patient's Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+                
+                <div id="patientDetails" class="mt-4" style="display: none;">
+                    <h3 class="mb-3">Patient's Details</h3>
+                    <p><strong>Name:</strong> <span id="patientName"></span></p>
+                    <p><strong>Concern:</strong> <span id="patientConcern"></span></p>
+
+
+                    <div class="mt-4">
+                        <label for="goal1" class="form-label">Enter Goal 1:</label>
+                        <input type="text" class="form-control" id="goal1" required>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button class="addGoalBtn btn btn-success">Add Goal</button>
+                            <button class="addAlternativeGoalBtn btn btn-secondary">Add Alternative Goal</button>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4">
+                        <label for="goal2" class="form-label">Enter Goal 2:</label>
+                        <input type="text" class="form-control" id="goal2" required>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button class="addGoalBtn btn btn-success">Add Goal</button>
+                            <button class="addAlternativeGoalBtn btn btn-secondary">Add Alternative Goal</button>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4">
+                        <label for="goal3" class="form-label">Enter Goal 3:</label>
+                        <input type="text" class="form-control" id="goal3" required>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button class="addGoalBtn btn btn-success">Add Goal</button>
+                            <button class="addAlternativeGoalBtn btn btn-secondary">Add Alternative Goal</button>
+                        </div>
+                    </div>
+
+
+                    <div class="mt-4">
+                        <label for="goal4" class="form-label">Enter Goal 4:</label>
+                        <input type="text" class="form-control" id="goal4" required>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button class="addGoalBtn btn btn-success">Add Goal</button>
+                            <button class="addAlternativeGoalBtn btn btn-secondary">Add Alternative Goal</button>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="goal5" class="form-label">Enter Goal 5:</label>
+                        <input type="text" class="form-control" id="goal5" required>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button class="addGoalBtn btn btn-success">Add Goal</button>
+                            <button class="addAlternativeGoalBtn btn btn-secondary">Add Alternative Goal</button>
+                        </div>
+                    </div>
+                    
+
+
+        
+
+
+
+                    <a href="{{ url_for('set_goals') }}"><button class=" btn btn-primary mt-5 w-100">Submit</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+ <!-- Bootstrap Bundle with Popper -->
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+ <!-- jQuery -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!-- Your custom script -->
+
+ <script>
+$(document).ready(function() {
+    $('#patientForm').submit(function(event) {
+        event.preventDefault();
+        var username = $('#username').val();
+        // Here, you would make an AJAX request to fetch patient details using the username
+        $.ajax({
+            type: 'POST',
+            url: '/search_patient', // Your Flask route to handle fetching patient details
+            data: { username: username },
+            success: function(response) {
+                $('#patientName').text(response.name);
+                $('#patientConcern').text(response.concern);
+                $('#patientDetails').show();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching patient details:', error);
+            }
+        });
+    });
+
+
+
+
+
+       // Add Goal button click event handler
+       $(document).on('click', '.addGoalBtn', function() {
+    var goal = $(this).closest('.mt-4').find('input[type="text"]').val();
+    var username = $('#username').val();
+    
+    // Find the ID of the input element dynamically
+    var goalId = $(this).closest('.mt-4').find('input[type="text"]').attr('id');
+
+    console.log(goalId);
+    console.log(goal);
+    // Make AJAX request to add the goal to the database
+    $.ajax({
+        type: 'POST',
+        url: '/add_goal',
+        data: {
+            username: username,
+            goal_text: goal,
+            goal_id: goalId
+        },
+        success: function(response) {
+            alert("Goal added successfully: " + goal);
+            var goalId = $(this).closest('.mt-4').find('input[type="text"]').attr('id');
+$('#' + goalId).val('');
+            // $('#messageBox').html("Goal added successfully: " + goal).show();
+        },
+        error: function(xhr, status, error) {
+            console.error('Error adding goal:', error);
+        }
+    });
+});
+
+
+
+
+       // Add Goal button click event handler
+       $(document).on('click', '.addAlternativeGoalBtn', function() {
+    var goal = $(this).closest('.mt-4').find('input[type="text"]').val();
+    var username = $('#username').val();
+    
+    // Find the ID of the input element dynamically
+    var goalId = $(this).closest('.mt-4').find('input[type="text"]').attr('id');
+
+    console.log(goalId);
+    console.log(goal);
+    // Make AJAX request to add the goal to the database
+    $.ajax({
+        type: 'POST',
+        url: '/add_goal',
+        data: {
+            username: username,
+            goal_text: goal,
+            goal_id: goalId
+        },
+        success: function(response) {
+            alert("Alternative Goal added successfully: " + goal);
+            var goalId = $(this).closest('.mt-4').find('input[type="text"]').attr('id');
+$('#' + goalId).val('');
+            // $('#messageBox').html("Goal added successfully: " + goal).show();
+        },
+        error: function(xhr, status, error) {
+            console.error('Error adding goal:', error);
+        }
+    });
+});
+
+
+
+
+
+
+
+
+    });
+</script>
+</body>
+</html>

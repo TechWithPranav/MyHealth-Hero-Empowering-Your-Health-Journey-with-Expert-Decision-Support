@@ -70,15 +70,16 @@
           <div>
             <!-- ------ for curent user -----  -->
             <input type="hidden" value="{{user_data.username}}" name="username">
+            <input type="hidden" value="{{doctor_name}}" name="doctor_name">
           </div>
           <div class="mb-3">
             <label for="timeSlot" class="form-label">Select a time slot:</label>
             <select class="form-select" id="timeSlot" name="time_slot" required >
               <option value="">-- Select Time Slot --</option>
-              <option value="">8:00 - 9:00</option>
-              <option value="">9:00 - 10:00</option>
-              <option value="">10:00 - 11:00</option>
-              <option value="">12:00 - 1:00</option>
+              <option value="8:00 - 9:00">8:00 - 9:00</option>
+              <option value="9:00 - 10:00">9:00 - 10:00</option>
+              <option value="10:00 - 11:00">10:00 - 11:00</option>
+              <option value="12:00 - 1:00">12:00 - 1:00</option>
               
             </select>
           </div>
