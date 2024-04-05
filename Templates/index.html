@@ -20,427 +20,500 @@
     {% include 'navbar.html'%}
 
 
-    {% if current_user.is_authenticated %}
-    <p>{{user_data.username}}</p>
-    {% else %}
-    <p>user is not logged in</p>
-    {% endif %}
-      
+    
       
 
 
 
 
 
-      <!-- ------------ home section -------------------  -->
+        <!-- ------------ home section -------------------  -->
 
-
-      <div id="myCarousel" class="carousel slide mb-6  " data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
-          <!-- <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button> -->
-        </div>
-        <div class="carousel-inner rounded">
-
-          <div class="carousel-item active">
-            <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="{{ url_for('static', filename='images/h1.jpg') }}" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg> -->
-
-            <img src="{{ url_for('static', filename='images/h1.jpg') }}" class="opacity-75" width="100%" height="100%" alt="" srcset="">
-            <div class="container">
-              <div class="carousel-caption text-center" style="display: flex;justify-content: center; flex-direction: column; align-content:flex-start;  height: 120%;">
-                <h1 style="color: black;" class="balsamiq-sans-bold">Discover Lost Treasures</h1>
-                <p class="opacity-30 balsamiq-sans-bold " style="color: black;font-size: 25px;" >Explore our vast collection of lost items waiting to be reunited with their owners. From keys to jewelry, we've got it all!</p>
-                <p><a class="btn btn-lg btn-outline-success balsamiq-sans-bold" href="#">Start Exploring</a></p>
+        <div class="container">
+          <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
               </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg> -->
-
-            
-            <img src="{{ url_for('static', filename='images/h2.jpeg') }}" class="opacity-75" width="100%" height="100%" alt="" srcset="">
-
-
-            <div class="container">
-              <div class="carousel-caption " style="display: flex;justify-content: center; flex-direction: column; align-content:flex-start;  height: 120%;">
-                <h1 style="color: black" class="balsamiq-sans-bold">Found Something?</h1>
-                <p style="color: black;font-size: 25px;" class="balsamiq-sans-bold">Have you stumbled upon a lost item? Be a hero and report it here! Your small act of kindness could make someone's day.</p>
-                <p><a class="btn btn-lg btn-outline-success balsamiq-sans-bold" href="#">Report Found Item</a></p>
+              <div class="carousel-inner rounded">
+                  <div class="carousel-item active">
+                      <img src="{{ url_for('static', filename='images/slider1.jpg') }}" class="opacity-75" width="100%" height="100%" alt="" srcset="">
+                      <div class="container">
+                          <div class="carousel-caption text-center" style="display: flex;justify-content: center; flex-direction: column; align-content:flex-start;  height: 120%;">
+                              <h1 style="color: rgb(255, 253, 253);" class="balsamiq-sans-bold">Embrace Your Inner Harmony</h1>
+                              <p class="opacity-30 balsamiq-sans-bold" style="color: rgb(255, 255, 255);font-size: 25px;">"Empowering Minds, Nurturing Wellness: Your Journey to Mental Well-being Starts Here!"</p>
+                           <!--<p><a class="btn btn-lg btn-outline balsamiq-sans-bold" href="#">Start Exploring</a></p>-->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="carousel-item">
+                      <img src="{{ url_for('static', filename='images/ai1.jpeg') }}" class="opacity-75" width="100%" height="100%" alt="" srcset="">
+                      <div class="container">
+                          <div class="carousel-caption " style="display: flex;justify-content: center; flex-direction: column; align-content:flex-start;  height: 120%;">
+                              <h1 style="color: black" class="balsamiq-sans-bold"> Empowering Minds, Erasing Stigma</h1>
+                             <!-- <p style="color: black;font-size: 25px;" class="balsamiq-sans-bold"></p>
+                              <p><a class="btn btn-lg btn-outline-success balsamiq-sans-bold" href="#"></a></p>--> 
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
           </div>
-
-
-          <!-- <div class="carousel-item ">
-
-            
-            <img src="{{ url_for('static', filename='images/h6.jpeg') }}" class="m-2 opacity-50" width="100%" height="100%" alt="" srcset="">
-            <div class="container">
-              <div class="carousel-caption d-flex justify-content-center flex-column text-center  " style="width: 70%; align-content: flex-end;margin-left: 10%; ">
-                <h1 style="color: black" class="balsamiq-sans-bold">Reclaim Your Valuables</h1>
-                <p style="color: black;" class="balsamiq-sans-bold ">Discover a community-driven solution to lost items. Browse through our curated listings and rediscover your cherished possessions.</p>
-                <p><a class="btn btn-lg btn-outline-danger balsamiq-sans-bold" href="#">Explore Listings</a></p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
 
-    </div>
 
+      <!-- ------- chat bot ---------  -->
 
-
-
-
-
-
-
-
-      <!-- -------------------- about us section --------------------------  -->
-
-
-      <section class="about-us d-flex flex-column justify-content-center align-items-center py-5 mt-3 rounded" id="about">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-6 order-md-1">
-              <h1 class="display-4 fw-bold mb-4 text-uppercase about-us-title balsamiq-sans-bold">About <span class="text-success balsamiq-sans-bold">Us</span></h1>
-              <p class="lead balsamiq-sans-bold">Overview</p>
-              <p class=" balsamiq-sans-bold opacity-75">We are a team passionate about creating solutions for everyday problems. Our Lost & Found app simplifies the process of finding lost items and returning found ones. Gone are the days of frantic searches and unclaimed belongings. We connect people with their lost treasures, fostering a more responsible and helpful community.</p>
-              <p class="balsamiq-sans-bold">Benefits</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted balsamiq-sans-bold">
-                  <i class="fas fa-check-circle text-primary me-2"></i> Increased chances of recovering lost items
-                </li>
-                <li class="list-group-item text-muted balsamiq-sans-bold"  style="text-decoration: none;">
-                  <i class="fas fa-sync-alt text-primary me-2 "></i> Efficient matching system for faster reunions
-                </li>
-                <li class="list-group-item text-muted balsamiq-sans-bold">
-                  <i class="fas fa-handshake text-primary me-2 "></i> Secure communication platform for safe return
-                </li>
-              </ul>
-              <a href="#" class="btn btn-success mt-4 balsamiq-sans-bold">Download the App Now</a>
-            </div>
-            <div class="col-md-6 order-md-2 mb-4 mb-md-0">
-              <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm about-video">
-                <!-- <iframe id="videoPlayer" width="560" height="315" src="{{ url_for('static', filename='abt_video.mp4') }}" title="Lost & Found App Demo" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/qJde3Kv5a7w" title="Lost & Found App Demo" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           <!-- -------- NOTE : here we have to use above url which contains embed in it otherwise url will not show---- -->
-           
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-
-
-
-
-      <!-- ----------------------- how it works ------------------  -->
-      <section class="how-it-works d-flex flex-column justify-content-center align-items-center py-5 mt-5" id="how-it-works">
-        <div class="container ">
-          <h1 class="display-4 fw-bold mb-5 text-uppercase about-us-title balsamiq-sans-bold text-center">How It <span class="text-success balsamiq-sans-bold">Works</span></h1>
-          <div class="row ">
-            <div class="col-md-4 mb-4">
-              <div class="step text-center rounded shadow-sm p-4">
-                <i class="fas fa-user-plus text-primary mb-3 fa-3x"></i>
-                <h3>Report a Lost Item</h3>
-                <p class="text-muted">Lost something valuable? Easily report it through our user-friendly app, providing details and location.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step text-center rounded shadow-sm p-4">
-                <i class="fas fa-box-open text-primary mb-3 fa-3x"></i>
-                <h3>Found Something?</h3>
-                <p class="text-muted">Found a lost item? Report it in our Found section, describing the item and location.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step text-center rounded shadow-sm p-4">
-                <i class="fas fa-sync-alt text-primary mb-3 fa-3x"></i>
-                <h3>Intelligent Matching</h3>
-                <p class="text-muted">Our advanced algorithm matches your lost item report with potential finds, prioritizing details.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step text-center rounded shadow-sm p-4">
-                <i class="fas fa-comments text-primary mb-3 fa-3x"></i>
-                <h3>Secure Communication</h3>
-                <p class="text-muted">Connect with the finder or owner through a secure, in-app chat to arrange a safe return.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step text-center rounded shadow-sm p-4">
-                <i class="fas fa-lock text-primary mb-3 fa-3x"></i>
-                <h3>Privacy Maintained</h3>
-                <p class="text-muted">We prioritize user privacy. Only relevant contact information is shared during communication.</p>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="step text-center rounded shadow-sm p-4">
-                <i class="fas fa-users text-primary mb-3 fa-3x"></i>
-                <h3>Build Your Reputation</h3>
-                <p class="text-muted">By actively reporting lost and found items, you contribute to a more responsible and helpful community.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- ------------- testimonials -----------------------  -->
-
-      <div class="rev-section mt-5">
-
-        <h2 class="title balsamiq-sans-bold display-4 ">Lost and Found <span class="text-success balsamiq-sans-bold">Testimonials</span></h2>
-        <p class="note balsamiq-sans-bold ">Discover how our lost and found platform has helped people reunite with their belongings.</p>
-        
-        <div class="reviews">
-        
-        <div class="review">
-           <div class="head-review">
-              <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" width="250px">
-           </div>
-           <div class="body-review">
-              <div class="name-review balsamiq-sans-bold ">Nathan D.</div>
-              <div class="place-review balsamiq-sans-bold ">Germany</div>
-              <div class="rating">
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star-half"></i>
-              </div>
-              <div class="desc-review balsamiq-sans-bold ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati eligendi suscipit illum officia ex eos.</div>
-           </div>
-        </div>
-        <div class="review">
-           <div class="head-review">
-              <img src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" width="250px">
-           </div>
-           <div class="body-review">
-              <div class="name-review balsamiq-sans-bold ">Mary Will</div>
-              <div class="place-review balsamiq-sans-bold ">Paris</div>
-              <div class="rating">
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-              </div>
-              <div class="desc-review balsamiq-sans-bold ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati eligendi suscipit illum officia ex eos.</div>
-           </div>
-        </div>
-
-
-        <div class="review">
-           <div class="head-review">
-              <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" width="250px">
-           </div>
-           <div class="body-review">
-              <div class="name-review balsamiq-sans-bold ">Kevin Tuck</div>
-              <div class="place-review balsamiq-sans-bold ">New York</div>
-              <div class="rating">
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star-half"></i>
-              </div>
-              <div class="desc-review balsamiq-sans-bold ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati eligendi suscipit illum officia ex eos.</div>
-           </div>
-        </div>
-   
-        
-
- 
-
-
-        </div>
-        
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- ---------------------- footer ---------------------  -->
-
-        <section class="mt-5">
-        <footer class="footer-section ">
-          <div class="container" >
-              <div class="footer-cta ">
-                  <div class="row ">
-                      <div class="col-xl-4 col-md-4 mb-30 "  style="margin-top: 2%;">
-                          <div class="single-cta">
-                              <i class="fas fa-map-marker-alt" style="color: green;"></i>
-                              <div class="cta-text">
-                                  <h4>Find us</h4>
-                                  <span>1010 Avenue, sw 54321, chandigarh</span>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-md-4 mb-30 "  style="margin-top: 2%;">
-                          <div class="single-cta">
-                              <i class="fas fa-phone" style="color: green;"></i>
-                              <div class="cta-text">
-                                  <h4>Call us</h4>
-                                  <span>9876543210 0</span>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-md-4 mb-30 "  style="margin-top: 2%;">
-                          <div class="single-cta">
-                              <i class="far fa-envelope-open" style="color: green;"></i>
-                              <div class="cta-text">
-                                  <h4>Mail us</h4>
-                                  <span>mail@info.com</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="footer-content pt-5 pb-5">
-                  <div class="row">
-                      <div class="col-xl-4 col-lg-4 mb-50">
-                          <div class="footer-widget">
-                              <div class="footer-logo">
-                                  <!-- <a href="index.html"><img src="https://i.ibb.co/QDy827D/ak-logo.png" class="img-fluid" alt="logo"></a> -->
-                                  <a class="navbar-brand animate__animated animate__flipInX animate__infinite animate__delay-1s" href="/">
-                                    <span class="d-block text-uppercase text-success fw-bold fs-3 balsamiq-sans-bold" style="text-stroke: 7px rgba(255, 255, 255, 0.678);">Lost & Found</span>
-                                  </a>
-                              </div>
-                              <div class="footer-text">
-                                  <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                                  elit,Lorem ipsum dolor sit amet.</p>
-                              </div>
-                              <div class="footer-social-icon">
-                                  <span>Follow us</span>
-                                  <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                  <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                  <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                          <div class="footer-widget">
-                              <div class="footer-widget-heading">
-                                  <h3>Useful Links</h3>
-                              </div>
-                              <ul>
-                                  <li><a href="#">Home</a></li>
-                                  <li><a href="#">about</a></li>
-                                  <li><a href="#">services</a></li>
-                                  <li><a href="#">portfolio</a></li>
-                                  <li><a href="#">Contact</a></li>
-                                  <li><a href="#">About us</a></li>
-                                  <li><a href="#">Our Services</a></li>
-                                  <li><a href="#">Expert Team</a></li>
-                                  <li><a href="#">Contact us</a></li>
-                                  <li><a href="#">Latest News</a></li>
-                              </ul>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                          <div class="footer-widget">
-                              <div class="footer-widget-heading">
-                                  <h3>Subscribe</h3>
-                              </div>
-                              <div class="footer-text mb-25">
-                                  <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                              </div>
-                              <div class="subscribe-form">
-                                  <form action="#" >
-                                      <input type="text" placeholder="Email Address">
-                                      <button style="background-color: green; border: none;"><i class="fab fa-telegram-plane" ></i></button>
-                                  </form>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="copyright-area">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                          <div class="copyright-text">
-                              <p>Copyright &copy; 2018, All Right Reserved <a href="">Pranav</a></p>
-                          </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                          <div class="footer-menu">
-                              <ul>
-                                  <li><a href="#">Home</a></li>
-                                  <li><a href="#">Terms</a></li>
-                                  <li><a href="#">Privacy</a></li>
-                                  <li><a href="#">Policy</a></li>
-                                  <li><a href="#">Contact</a></li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </footer>
-
-
-    </section>
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script>
-     // JavaScript
-// JavaScript
-document.addEventListener("DOMContentLoaded", function() {
-  var videoPlayer = document.getElementById("videoPlayer");
   
-  // Pause the video when the page is loaded
-  videoPlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-  // Pause the video when the navbar is switched back to the home page
-  document.getElementById('/index.html').addEventListener("click", function() {
+  
+      
+        <!-- -------------------- about us section --------------------------  -->
+  
+  
+        <section class="about-us d-flex flex-column justify-content-center align-items-center py-5 mt-3 rounded" id="about">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6 order-md-1">
+                <h1 class="display-4 fw-bold mb-4 text-uppercase about-us-title balsamiq-sans-bold">About <span class="text-primary balsamiq-sans-bold">US</span></h1>
+                <p class="lead balsamiq-sans-bold">Overview</p>
+                <p class=" balsamiq-sans-bold opacity-75">We are a team passionate about creating solutions for everyday problems. Mental health and wellness are integral components of overall well-being. They encompass emotional, psychological, and social well-being, influencing how we think, feel, and act.</p>
+                <p class="balsamiq-sans-bold">Benefits</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-muted balsamiq-sans-bold">
+                    <i class="fas fa-check-circle text-primary me-2"></i> Emotional well-being
+                  </li>
+                  <li class="list-group-item text-muted balsamiq-sans-bold"  style="text-decoration: none;">
+                    <i class="fas fa-sync-alt text-primary me-2 "></i> Community Connection
+                  </li>
+                  <li class="list-group-item text-muted balsamiq-sans-bold">
+                    <i class="fas fa-handshake text-primary me-2 "></i> Accessible Anytime, Anywhere
+                  </li>
+                </ul>
+                <a href="#" class="btn btn-primary mt-4 balsamiq-sans-bold">Download the App Now</a>
+              </div>
+              <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+                <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm about-video">
+                  <!-- <iframe id="videoPlayer" width="560" height="315" src="{{ url_for('static', filename='abt_video.mp4') }}" title="Lost & Found App Demo" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                  <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/1i9OktVsTWo" title="Mental Health" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             <!-- -------- NOTE : here we have to use above url which contains embed in it otherwise url will not show---- -->
+             
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+  
+  
+  
+  
+  
+      
+       <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+      <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <h1>Welcome to <span>MyHealth Hero </span> wellness</h1>
+        <h2 style="color:#2b2121;">Advancing Technology for Humanity</h2>
+        <h2 style="color:#1727b1;">Understanding Common Mental Health Disorders</h2>
+        <div class="d-flex">
+          <a href="#" class="btn-get-started scrollto" style="text-decoration: none;">VISIT US</a>
+  
+         <!--  <a href="#" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
+        </div>
+      </div>
+    </section><!-- End Hero -->
+  
+  
+  
+  
+  
+  
+   <!-- detail of mental disorder-->
+        <section id="featured-services" class="featured-services">
+          <div class="container" data-aos="fade-up">
+  
+    
+            <div class="row">
+    
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+                  <div class="icon"><i class="bx bx-world"></i></div>
+                  <h4 class="title"><a href="https://www.cdc.gov/ncbddd/adhd/facts.html#:~:text=ADHD%20is%20one%20of%20the,)%2C%20or%20be%20overly%20active.">Attention-Deficit/Hyperactivity Disorder (ADHD):</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;"> ADHD is characterized by persistent patterns of inattention, hyperactivity, and impulsivity that interfere with daily functioning and development. Symptoms often appear in childhood and can continue into adulthood.</p>
+                </div>
+              </div>
+    
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                  <h4 class="title"><a href="https://www.psychiatry.org/patients-families/obsessive-compulsive-disorder/what-is-obsessive-compulsive-disorder">Obsessive-Compulsive Disorder (OCD):</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">OCD involves recurrent, intrusive thoughts (obsessions) and repetitive behaviors or mental acts (compulsions) performed to alleviate anxiety or prevent perceived harm. These behaviors can significantly disrupt daily life.</p>
+                </div>
+              </div>
+    
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                  <div class="icon"><i class="bx bx-file"></i></div>
+                  <h4 class="title"><a href="https://bbrfoundation.org/faq/frequently-asked-questions-about-bipolar-disorder?gad_source=1&gclid=CjwKCAjwwr6wBhBcEiwAfMEQs4rMLcO5Q6tMv_Hptb6jgv7Y_zZgNSqGKvQDTrUakh7VRBFZlybwNhoCBQoQAvD_BwE"> Bipolar Disorder:</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">Bipolar disorder, formerly known as manic-depressive illness, is marked by mood swings between episodes of depression and mania or hypomania. Depressive episodes involve sadness, hopelessness, and loss of interest, while manic or hypomanic episodes involve elevated mood, increased energy, and impulsivity.</p>
+                 </div>
+              </div>
+    
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                  <div class="icon"><i class="bx bx-tachometer"></i></div>
+                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/borderline-personality-disorder#:~:text=What%20is%20borderline%20personality%20disorder,impact%20their%20relationships%20with%20others.">Borderline Personality Disorder (BPD):</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">BPD is characterized by unstable relationships, self-image, and emotions, along with impulsivity and intense fear of abandonment. Individuals with BPD may experience mood swings, impulsivity, self-harm, and difficulty regulating emotions.</p>   </div>
+              </div>
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+                  <div class="icon"><i class="bx bx-world"></i></div>
+                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/anxiety-disorders">Anxiety Disorders:</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">Anxiety disorders involve excessive fear, worry, or nervousness that can interfere with daily activities and quality of life. Common types include generalized anxiety disorder (GAD), panic disorder, social anxiety disorder, and specific phobias.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                  <h4 class="title"><a href="https://www.psychiatry.org/patients-families/depression/what-is-depression">Depressive Disorders:</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">Depressive disorders, including major depressive disorder and persistent depressive disorder, involve persistent feelings of sadness, hopelessness, and loss of interest or pleasure in activities. These conditions can significantly impair functioning and may require treatment.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                  <div class="icon"><i class="bx bx-file"></i></div>
+                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/eating-disorders#:~:text=Eating%20disorders%20are%20actually%20serious,also%20signal%20an%20eating%20disorder.">Eating Disorders:</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">Eating disorders such as anorexia nervosa, bulimia nervosa, and binge-eating disorder involve unhealthy attitudes and behaviors related to food, weight, and body image. These conditions can have serious physical and emotional consequences.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                  <div class="icon"><i class="bx bx-tachometer"></i></div>
+                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/substance-use-and-mental-health#:~:text=Substance%20use%20disorder%20(SUD)%20is,drugs%2C%20alcohol%2C%20or%20medications.">Substance Use Disorders:</a></h4>
+                  <p class="description" style="text-align: justify; text-justify: inter-word;">Substance use disorders involve problematic use of alcohol, drugs, or other substances, leading to significant impairment or distress. These disorders can range from mild to severe and often require professional intervention for treatment and recovery.</p>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+  
+  
+        <!-- ----------------------- how it works ------------------  -->
+        <section class="how-it-works d-flex flex-column justify-content-center align-items-center py-5 mt-5" id="how-it-works">
+          <div class="container">
+            <h1 class="display-4 fw-bold mb-5 text-uppercase about-us-title balsamiq-sans-bold text-center">How It <span class="text-primary balsamiq-sans-bold">Works</span></h1>
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="step text-center rounded shadow-sm p-4">
+                  <i class="fas fa-brain text-primary mb-3 fa-3x"></i>
+                  <h3>Assess Your Mental Health</h3>
+                  <p class="text-muted">Begin your journey by assessing your mental health with our comprehensive evaluation tools, gaining insights into your emotional well-being.</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="step text-center rounded shadow-sm p-4">
+                  <i class="fas fa-users text-primary mb-3 fa-3x"></i>
+                  <h3>Connect with a Supportive Community</h3>
+                  <p class="text-muted">Join our vibrant community of individuals dedicated to mental wellness. Share experiences, find support, and foster meaningful connections.</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="step text-center rounded shadow-sm p-4">
+                  <i class="fas fa-book-reader text-primary mb-3 fa-3x"></i>
+                  <h3>Access Resources and Guidance</h3>
+                  <p class="text-muted">Explore a wealth of resources, including articles, videos, and guided exercises, curated to promote self-care, resilience, and personal growth.</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="step text-center rounded shadow-sm p-4">
+                  <i class="fas fa-comments text-primary mb-3 fa-3x"></i>
+                  <h3>Engage in Confidential Support</h3>
+                  <p class="text-muted">Connect with licensed professionals for confidential support and guidance through secure, private messaging or virtual sessions.</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="step text-center rounded shadow-sm p-4">
+                  <i class="fas fa-calendar-check text-primary mb-3 fa-3x"></i>
+                  <h3>Set Goals and Track Progress</h3>
+                  <p class="text-muted">Set achievable goals and track your progress using our intuitive tools. Celebrate milestones and stay motivated on your journey to mental well-being.</p>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4">
+                <div class="step text-center rounded shadow-sm p-4">
+                  <i class="fas fa-heart text-primary mb-3 fa-3x"></i>
+                  <h3>Nurture Your Mental Wellness</h3>
+                  <p class="text-muted">Prioritize your mental well-being and discover practices for self-compassion, mindfulness, and stress reduction. Cultivate a healthier, happier life.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+  
+  
+  
+  
+  
+  
+  
+  
+        <!-- ------------- testimonials -----------------------  -->
+  
+        <div class="rev-section mt-5">
+          <h2 class="title balsamiq-sans-bold display-4 ">MyHealth-Hero <span class="text-primary balsamiq-sans-bold">Testimonials</span></h2>
+          <p class="note balsamiq-sans-bold ">Discover how our mental health and wellness platform has positively impacted individuals on their journey to well-being.</p>
+          
+          <div class="reviews">
+            <div class="review">
+              <div class="head-review">
+                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" width="250px">
+              </div>
+              <div class="body-review">
+                <div class="name-review balsamiq-sans-bold ">Emma W.</div>
+                <div class="place-review balsamiq-sans-bold ">United States</div>
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half"></i>
+                </div>
+                <div class="desc-review balsamiq-sans-bold ">Thanks to this platform MyHealth Hero , I've been able to prioritize my mental health like never before. From guided meditation to personalized resources, it's been a game-changer for my well-being journey.</div>
+              </div>
+            </div>
+        
+            <div class="review">
+              <div class="head-review">
+                <img src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" width="250px">
+              </div>
+              <div class="body-review">
+                <div class="name-review balsamiq-sans-bold ">Michael L.</div>
+                <div class="place-review balsamiq-sans-bold ">Canada</div>
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="desc-review balsamiq-sans-bold ">This platform has been a lifeline for me during tough times. The community support and resources have helped me navigate my mental health challenges with more confidence and resilience.</div>
+              </div>
+            </div>
+        
+            <div class="review">
+              <div class="head-review">
+                <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" width="250px">
+              </div>
+              <div class="body-review">
+                <div class="name-review balsamiq-sans-bold ">Sophia K.</div>
+                <div class="place-review balsamiq-sans-bold ">United Kingdom</div>
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half"></i>
+                </div>
+                <div class="desc-review balsamiq-sans-bold ">I'm incredibly grateful for this platform and its role in my mental wellness journey. The guidance and tools provided have empowered me to take control of my mental health and lead a more fulfilling life.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+  
+  
+  
+  
+  
+  
+  
+  
+          <!-- ---------------------- footer ---------------------  -->
+  
+          <section class="mt-5">
+          <footer class="footer-section ">
+            <div class="container" >
+                <div class="footer-cta ">
+                    <div class="row ">
+                        <div class="col-xl-4 col-md-4 mb-30 "  style="margin-top: 2%;">
+                            <div class="single-cta">
+                                <i class="fas fa-map-marker-alt" style="color: rgb(104, 185, 240);"></i>
+                                <div class="cta-text">
+                                    <h4>Find us</h4>
+                                    <span>1010 Avenue, sw 54321, chandigarh</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30 "  style="margin-top: 2%;">
+                            <div class="single-cta">
+                                <i class="fas fa-phone" style="color:#378CE7;"></i>
+                                <div class="cta-text">
+                                    <h4>Call us</h4>
+                                    <span>9876543210 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30 "  style="margin-top: 2%;">
+                            <div class="single-cta">
+                                <i class="far fa-envelope-open" style="color: #378CE7;"></i>
+                                <div class="cta-text">
+                                    <h4>Mail us</h4>
+                                    <span>mail@info.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-content pt-5 pb-5">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 mb-50">
+                            <div class="footer-widget">
+                                <div class="footer-logo">
+                                    <!-- <a href="index.html"><img src="https://i.ibb.co/QDy827D/ak-logo.png" class="img-fluid" alt="logo"></a> -->
+                                    <a class="navbar-brand animate__animated animate__flipInX animate__infinite animate__delay-1s" href="/">
+                                    <span class="d-block text-uppercase text-primary fw-bold fs-3 balsamiq-sans-bold" style="text-stroke: 7px rgba(255, 255, 255, 0.678);">MyHealth &amp; Hero</span>
+    </a>
+                                </div>
+                                <div class="footer-text">
+                                  <p>Take a step towards mental wellness. Embrace self-care and prioritize your emotional well-being. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                              </div>
+                                <div class="footer-social-icon">
+                                    <span>Follow us</span>
+                                    <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                    <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                    <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="footer-widget-heading">
+                                    <h3>Useful Links</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">about</a></li>
+                                    <li><a href="#">services</a></li>
+                                    <li><a href="#">portfolio</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Our Services</a></li>
+                                    <li><a href="#">Expert Team</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="#">Latest News</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                            <div class="footer-widget">
+                                <div class="footer-widget-heading">
+                                    <h3>Subscribe</h3>
+                                </div>
+                                <div class="footer-text mb-25">
+                                    <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                                </div>
+                                <div class="subscribe-form">
+                                    <form action="#" >
+                                        <input type="text" placeholder="Email Address">
+                                        <button style="background-color: #378CE7; border: none;"><i class="fab fa-telegram-plane" ></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                            <div class="copyright-text">
+                                <p>Copyright &copy; 2018, All Right Reserved <a href="">Pranav</a></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Terms</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">Policy</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+  
+  
+      </section>
+  
+  
+  
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+          <script>
+       // JavaScript
+  // JavaScript
+  document.addEventListener("DOMContentLoaded", function() {
+    var videoPlayer = document.getElementById("videoPlayer");
+    
+    // Pause the video when the page is loaded
     videoPlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    // Pause the video when the navbar is switched back to the home page
+    document.getElementById('/index.html').addEventListener("click", function() {
+      videoPlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    });
   });
-});
 
-        </script>
-</body>
-</html>
+
+
+
+
+
+  // ------ chat bot ---
+  'use strict';
+
+// Function to toggle chatbot visibility
+function toggleChatbot() {
+    var chatbot = document.getElementById('chatbot');
+    if (chatbot.style.display === 'none') {
+        chatbot.style.display = 'block';
+    } else {
+        chatbot.style.display = 'none';
+    }
+}
+  
+          </script>
+
+<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+<script>
+  window.botpressWebChat.init({
+      "composerPlaceholder": "Chat with bot",
+      "botConversationDescription": "MyMind-Hero Chat",
+      "botId": "38ed9c45-d8e2-43ba-bd18-35e4b76f9c97",
+      "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
+      "messagingUrl": "https://messaging.botpress.cloud",
+      "clientId": "38ed9c45-d8e2-43ba-bd18-35e4b76f9c97",
+      "webhookId": "7de78305-36fa-4a97-a0cb-7d3962e22582",
+      "lazySocket": true,
+      "themeName": "prism",
+      "frontendVersion": "v1",
+      "enableConversationDeletion": true,
+      "showPoweredBy": true,
+      "theme": "prism",
+      "themeColor": "#2563eb"
+  });
+</script>
+  </body>
+  </html>

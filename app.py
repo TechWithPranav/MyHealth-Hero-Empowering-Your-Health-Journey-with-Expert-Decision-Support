@@ -11,6 +11,13 @@ import smtplib  # For sending emails
 
 app = Flask(__name__)
 
+
+i1 = None
+i2 = None
+i3 = None
+i4 = None
+i5 = None
+
 #sdfshh
 # Generate a secure secret key
 secret_key = secrets.token_hex(16)
@@ -129,27 +136,217 @@ def home():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    user_data = None
-    appointments_data = None
+   user_data = None
+   appointments_data = None
+   goals_collection_main=None
+   doctor_name = None
+   time_slot = None
+   concern = None
+   google_meet_link = None    
 
-    if current_user.is_authenticated:
-        user_data = users_collection.find_one({'username': current_user.username})
-        appointments_data = appointments_collection.find_one({'username': current_user.username})
 
-    doctor_name = None
-    time_slot = None
-    concern = None
-    google_meet_link = None
+   if current_user.is_authenticated:
+     user_data = users_collection.find_one({'username': current_user.username})
+     appointments_data = appointments_collection.find_one({'username': current_user.username})
+     goals_collection_main = goals_collection.find_one({'username': current_user.username})
 
-    if appointments_data:
-        doctor_name = appointments_data.get('doctor_name')
-        time_slot = appointments_data.get('time_slot')
-        concern = appointments_data.get('concern')
-        google_meet_link = appointments_data.get('google_meet_link')
+   if appointments_data:
+         doctor_name = appointments_data.get('doctor_name')
+         time_slot = appointments_data.get('time_slot')
+         concern = appointments_data.get('concern')
+         google_meet_link = appointments_data.get('google_meet_link')  
 
-    print(appointments_data)  # Print appointments_data for debugging
+   g1 = None
+   g2 = None
+   g3 = None
+   g4 = None
+   g5 = None   
+   goal_1 =None       
+   goal_2 =None    
+   goal_3=None      
+   goal_4=None     
+   goal_5= None  
+
+# Initialize index variables
+   if 'i1' not in session:
+       session['i1'] = 0
+   if 'i2' not in session:
+       session['i2'] = 0
+   if 'i3' not in session:
+       session['i3'] = 0
+   if 'i4' not in session:
+       session['i4'] = 0
+   if 'i5' not in session:
+       session['i5'] = 0    
+
+
+# Handle GET requests
+   if request.method == 'GET':
+    # Reset index variables to 0 when the page is loaded
+     session['i1'] = 0
+     session['i2'] = 0
+     session['i3'] = 0
+     session['i4'] = 0
+     session['i5'] = 0
+
+    # Fetch goal data based on the current index
+     if goals_collection_main:
+        goal1 = goals_collection_main.get('goal1', [])
+        goal2 = goals_collection_main.get('goal2', [])
+        goal3 = goals_collection_main.get('goal3', [])
+        goal4 = goals_collection_main.get('goal4', [])
+        goal5 = goals_collection_main.get('goal5', [])
+
+        goal_1 = goal1[session['i1']] if goal1 else None
+        goal_2 = goal2[session['i2']] if goal2 else None
+        goal_3 = goal3[session['i3']] if goal3 else None
+        goal_4 = goal4[session['i4']] if goal4 else None
+        goal_5 = goal5[session['i5']] if goal5 else None
+
+     return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
+
+   # Handle POST requests
+   if request.method == 'POST':
+    # Increment index variables based on the form submission
+
+     g1 = request.form.get('goal1_main')
+
+     g2 = request.form.get('goal2_main')
+
+     g3 = request.form.get('goal3_main')
+
+     g4 = request.form.get('goal4_main')
+    
+     g5 = request.form.get('goal5_main')
+     if g1:
+        session['i1'] += 1
+     if g2:
+        session['i2'] += 1
+     if g3:
+        session['i3'] += 1
+     if g4:
+        session['i4'] += 1
+     if g5:
+        session['i5'] += 1
+
+# Fetch goal data based on the current index
+     if goals_collection_main:
+      goal1 = goals_collection_main.get('goal1', [])
+      goal2 = goals_collection_main.get('goal2', [])
+      goal3 = goals_collection_main.get('goal3', [])
+      goal4 = goals_collection_main.get('goal4', [])
+      goal5 = goals_collection_main.get('goal5', [])
+
+      goal_1 = goal1[session['i1']] if goal1 and len(goal1) > session['i1'] else None
+      goal_2 = goal2[session['i2']] if goal2 and len(goal2) > session['i2'] else None
+      goal_3 = goal3[session['i3']] if goal3 and len(goal3) > session['i3'] else None
+      goal_4 = goal4[session['i4']] if goal4 and len(goal4) > session['i4'] else None
+     goal_5 = goal5[session['i5']] if goal5 and len(goal5) > session['i5'] else None
+
+   return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
   
-    return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link)
+
+    # goal_1 =None       
+    # goal_2 =None    
+    # goal_3=None      
+    # goal_4=None     
+    # goal_5 =None  
+
+
+
+    # g1 = None
+    # g2 = None
+    # g3 = None
+    # g4 = None
+    # g5 = None
+
+
+    # # Initialize index variables
+    # if 'i1' not in session:
+    #     session['i1'] = 0
+    # if 'i2' not in session:
+    #     session['i2'] = 0
+    # if 'i3' not in session:
+    #     session['i3'] = 0
+    # if 'i4' not in session:
+    #     session['i4'] = 0
+    # if 'i5' not in session:
+    #     session['i5'] = 0    
+
+    # if current_user.is_authenticated:
+    #     user_data = users_collection.find_one({'username': current_user.username})
+    #     appointments_data = appointments_collection.find_one({'username': current_user.username})
+    #     goals_collection_main = goals_collection.find_one({'username': current_user.username})
+
+    # doctor_name = None
+    # time_slot = None
+    # concern = None
+    # google_meet_link = None
+
+    # g1 = request.form.get('goal1_main')
+
+    # g2 = request.form.get('goal2_main')
+
+    # g3 = request.form.get('goal3_main')
+
+    # g4 = request.form.get('goal4_main')
+    
+    # g5 = request.form.get('goal5_main')
+
+    # print(i1)
+    # print(i2)
+    # print(i3)
+    # print(i4)
+    # print(i5)
+
+    # if g1:
+    #     session['i1'] += 1
+    # if g2:
+    #     session['i2'] += 1
+    # if g3:
+    #     session['i3'] += 1
+    # if g4:
+    #     session['i4'] += 1
+    # if g5:
+    #     session['i5'] += 1
+
+
+    
+    # if appointments_data:
+    #     doctor_name = appointments_data.get('doctor_name')
+    #     time_slot = appointments_data.get('time_slot')
+    #     concern = appointments_data.get('concern')
+    #     google_meet_link = appointments_data.get('google_meet_link')
+
+    # if goals_collection_main:
+    #     # Fetch goal1 and get the first goal from the array
+    #     goal1 = goals_collection_main.get('goal1', [])
+    #     goal2 = goals_collection_main.get('goal2', [])
+    #     goal3 = goals_collection_main.get('goal3', [])
+    #     goal4 = goals_collection_main.get('goal4', [])
+    #     goal5 = goals_collection_main.get('goal5', [])
+
+    #     if goal1 and len(goal1) > session['i1']:
+    #      goal_1 = goal1[session['i1']]
+    #     if goal2 and len(goal2) > session['i2']:
+    #         goal_2 = goal2[session['i2']]
+    #     if goal3 and len(goal3) > session['i3']:
+    #         goal_3 = goal3[session['i3']]
+    #     if goal4 and len(goal4) > session['i4']:
+    #         goal_4 = goal4[session['i4']]
+    #     if goal5 and len(goal5) > session['i5']:
+    #         goal_5 = goal5[session['i5']]
+
+
+    # # print(goal_1)  # Print goal for debugging        
+    # # print(goal_2)  # Print goal for debugging        
+    # # print(goal_3)  # Print goal for debugging        
+    # # print(goal_4)  # Print goal for debugging        
+    # # print(goal_5)  # Print goal for debugging        
+
+    # # print(appointments_data)  # Print appointments_data for debugging
+  
+    # return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
   
 
 
