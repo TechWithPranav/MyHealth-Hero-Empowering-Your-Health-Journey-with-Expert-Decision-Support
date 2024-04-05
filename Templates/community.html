@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwindcss-colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/community.css') }}">
 </head>
 <body>
     
@@ -11,14 +15,421 @@
 
 {% include 'navbar.html' %}
 
-i am community
+<!-- i am community
 
 
 {% if current_user.is_authenticated %}
 <p>{{user_data.username}}</p>
 {% else %}
 <p>user is not logged in</p>
-{% endif %}
+{% endif %} -->
+
+
+
+
+    <!-- start: Chat -->
+    <section class="chat-section">
+        <div class="chat-container">
+            <!-- start: Sidebar -->
+            <aside class="chat-sidebar">
+                <a href="#" class="chat-sidebar-logo">
+                    <i class="ri-chat-1-fill"></i>
+                </a>
+                <ul class="chat-sidebar-menu">
+                    <li class="active"><a href="#" data-title="Chats"><i class="ri-chat-3-line"></i></a></li>
+                    <li><a href="#" data-title="Contacts"><i class="ri-contacts-line"></i></a></li>
+                    <li><a href="#" data-title="Documents"><i class="ri-folder-line"></i></a></li>
+                    <li><a href="#" data-title="Settings"><i class="ri-settings-line"></i></a></li>
+                    <li class="chat-sidebar-profile">
+                        <button type="button" class="chat-sidebar-profile-toggle">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                        </button>
+                        <ul class="chat-sidebar-profile-dropdown">
+                            <li><a href="#"><i class="ri-user-line"></i> Profile</a></li>
+                            <li><a href="#"><i class="ri-logout-box-line"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <!-- end: Sidebar -->
+            <!-- start: Content -->
+            <div class="chat-content">
+                <!-- start: Content side -->
+                <div class="content-sidebar">
+                    <div class="content-sidebar-title">Chats</div>
+                    <form action="" class="content-sidebar-form">
+                        <input type="search" class="content-sidebar-input" placeholder="Search Community ">
+                        <button type="submit" class="content-sidebar-submit"><i class="ri-search-line"></i></button>
+                    </form>
+                    <div class="content-messages">
+                        <ul class="content-messages-list">
+                            <li class="content-message-title"><span>Recently</span></li>
+                            <li>
+                                <a href="#" data-conversation="#conversation-1">
+                                    <img class="content-message-image" src="https://tse2.mm.bing.net/th?id=OIP.h_kG8jP02qanl0LjaQ3JVwHaFk&pid=Api&P=0&h=180" alt="">
+                                    <span class="content-message-info">
+                                        <span class="content-message-name">Biploar Disorder</span>
+                                        <span class="content-message-text">A well hearted community for bipolar people </span>
+                                    </span>
+                                    <span class="content-message-more">
+                                        <span class="content-message-unread">2</span>
+                                        <span class="content-message-time">12:30</span>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li>
+
+                                <a href="#" data-conversation="#conversation-2">
+                                    <img class="content-message-image" src="https://adultmentalhealth.org/wp-content/uploads/2019/12/depression-scaled.jpg" alt="">
+                                    <span class="content-message-info">
+                                        <span class="content-message-name">Clinical Depression</span>
+                                        <span class="content-message-text">Lorem ipsum dolor sit amet consectetur.</span>
+                                    </span>
+                                    <span class="content-message-more">
+                                        <span class="content-message-time">12:30</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-conversation="#conversation-3">
+                                    <img class="content-message-image" src="https://media.istockphoto.com/id/1242127315/vector/information-overload.jpg?s=2048x2048&w=is&k=20&c=iW7gtLGDvzJcNtNk7cBYr0KKNWrYF8LvlZBUHdIvIV8=" alt="">
+                                    <span class="content-message-info">
+                                        <span class="content-message-name">Anxiety Disorder</span>
+                                        <span class="content-message-text">Lorem ipsum dolor sit amet consectetur.</span>
+                                    </span>
+                                    <span class="content-message-more">
+                                        <span class="content-message-unread">5</span>
+                                        <span class="content-message-time">12:30</span>
+                                    </span>
+                                </a>
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!-- end: Content side -->
+
+
+
+                <!-- start: Conversation -->
+                <div class="conversation conversation-default active">
+                    <i class="ri-chat-3-line"></i>
+                    <p>Select chat and view conversation!</p>
+                </div>
+
+
+
+
+                <div class="conversation" id="conversation-1">
+                    <div class="conversation-top">
+                        <button type="button" class="conversation-back"><i class="ri-arrow-left-line"></i></button>
+                        <div class="conversation-user">
+                            <img class="conversation-user-image" src="https://tse2.mm.bing.net/th?id=OIP.h_kG8jP02qanl0LjaQ3JVwHaFk&pid=Api&P=0&h=180" alt="">
+                            <div>
+                                <div class="conversation-user-name">Bipolar</div>
+                                <div class="conversation-user-status online">online</div>
+                            </div>
+                        </div>
+                        <div class="conversation-buttons">
+                            
+                            <button type="button"><i class="ri-information-line"></i></button>
+                        </div>
+                    </div>
+                    <div class="conversation-main">
+                        <ul class="conversation-wrapper">
+                            <div class="coversation-divider"><span>Today</span></div>
+                            <li class="conversation-item me">
+                                <div class="conversation-item-side">
+                                    <img class="conversation-item-image" src="https://adultmentalhealth.org/wp-content/uploads/2019/12/depression-scaled.jpg" alt="">
+                                </div>
+                                <div class="conversation-item-content">
+
+
+
+                                    <!-- <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet natus repudiandae quisquam sequi nobis suscipit consequatur rerum alias odio repellat!</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Share</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    {% for message in messages %}
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>{{ message.username }}: {{ message.message }}</p>
+                                                <!-- <div class="conversation-item-time">{{ message.time }}</div> -->
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Share</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                    
+                              
+
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="conversation-form">
+                        <button type="button" class="conversation-form-button"><i class="ri-emotion-line"></i></button>
+                        <div class="conversation-form-group">
+                            <textarea id="message" class="conversation-form-input" rows="1" placeholder="Type here..."></textarea>
+                            <input type="hidden" id="username" value="{{user_data.username}}">  <!-- Add a hidden input field for username -->
+                            <button type="button" onclick="sendMessage()" class="conversation-form-record"><i class="ri-mic-line"></i></button>
+                        </div>
+                        <button type="button" onclick="sendMessage()" class="conversation-form-button conversation-form-submit"><i class="ri-send-plane-2-line"></i></button>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- ---------- second community ----------  -->
+
+                <div class="conversation" id="conversation-2">
+                    <div class="conversation-top">
+                        <button type="button" class="conversation-back"><i class="ri-arrow-left-line"></i></button>
+                        <div class="conversation-user">
+                            <img class="conversation-user-image" src="https://adultmentalhealth.org/wp-content/uploads/2019/12/depression-scaled.jpg" alt="">
+                            <div>
+                                <div class="conversation-user-name">Clinical Depression</div>
+                                <div class="conversation-user-status online">online</div>
+                            </div>
+                        </div>
+                        <div class="conversation-buttons">
+                            <button type="button"><i class="ri-phone-fill"></i></button>
+                            
+                        </div>
+                    </div>
+                    <div class="conversation-main">
+                        <ul class="conversation-wrapper">
+                            <div class="coversation-divider"><span>Today</span></div>
+                            <li class="conversation-item me">
+                                <div class="conversation-item-side">
+                                    <img class="conversation-item-image" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                                </div>
+                                <div class="conversation-item-content">
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>orem ipsum dolor sit, amet consectetur adipisicing elit. Amet natus repudiandae quisquam sequi nobis suscipit consequatur rerum alias odio repellat!</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, tenetur!</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="conversation-item">
+                                <div class="conversation-item-side">
+                                    <img class="conversation-item-image" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                                </div>
+                                <div class="conversation-item-content">
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Share</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eos ab in?</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, debitis. Iste natus est aliquam ipsum doloremque fugiat, quidem eos autem? Dolor quisquam laboriosam enim cum laborum suscipit perferendis adipisci praesentium.</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="conversation-item me">
+                                <div class="conversation-item-side">
+                                    <img class="conversation-item-image" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                                </div>
+                                <div class="conversation-item-content">
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, eos, magni temporibus, placeat consectetur nobis incidunt dicta a culpa vel esse. Facilis fugiat possimus eveniet accusamus dignissimos pariatur inventore animi rem vero, eligendi obcaecati fugit quaerat? Officia ex quod eaque maxime ipsam, tempore error laboriosam laborum, magnam ipsum doloremque quas.</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus debitis odio maiores perferendis ipsa repudiandae amet blanditiis quod. Ullam, dolorum.</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium blanditiis ea, voluptatum, eveniet at harum minima maxime enim aut non, iure expedita excepturi tempore nostrum quasi natus voluptas dolore ducimus!</p>
+                                                <div class="conversation-item-time">12:30</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li><a href="#"><i class="ri-share-forward-line"></i> Forward</a></li>
+                                                    <li><a href="#"><i class="ri-delete-bin-line"></i> Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="conversation-form">
+                        <button type="button" class="conversation-form-button"><i class="ri-emotion-line"></i></button>
+                        <div class="conversation-form-group">
+                            <textarea class="conversation-form-input" rows="1" placeholder="Type here..."></textarea>
+                            <!-- <button type="button" class="conversation-form-record"><i class="ri-mic-line"></i></button> -->
+                        </div>
+                        <button type="button" class="conversation-form-button conversation-form-submit"><i class="ri-send-plane-2-line"></i></button>
+                    </div>
+                </div>
+                <!-- end: Conversation -->
+            </div>
+            <!-- end: Content -->
+        </div>
+    </section>
+    <!-- end: Chat -->
+
+
+    <script>
+
+function triggerClick() {
+        var element = document.querySelector('[data-conversation="#conversation-1"]'); // Select the desired element
+        if (element) {
+            element.click(); // Trigger click event
+        }
+    }
+        function sendMessage() {
+            var message = document.getElementById("message").value;
+            var username = document.getElementById("username").value;
+            
+            // Send data to Flask route
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message, username: username }),
+            })
+            .then(response => {
+                        if (response.ok) {
+                            console.log('POST request successful');
+                            // Redirect to loster_handler.html with place_name as a query parameter
+                            window.location.href = '/community';
+                            triggerClick();
+                        } else {
+                            console.error('POST request failed');
+                        }
+                    })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Handle error (e.g., show an error message)
+            });
+        }
+        </script>
+    <script src="{{ url_for('static', filename='js/community.js') }}"></script>
 
 </body>
 </html>

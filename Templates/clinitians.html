@@ -4,23 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .slider-container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    
+}
+
+.slider {
+      /* border: 20px solid red; */
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .card {
+    flex: 0 0 300px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+    height: 70%;
+  }
+
+  .card img {
+    width: 90%;
+    height: 200px;
+    /* object-fit: cover; */
+    position: relative;
+    /* top: 20%; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .btn {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+
+  /* Style for the previous and next buttons */
+  .prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .prev-btn {
+    left: 10px;
+    
+  }
+
+  .next-btn {
+    right: 10px;
+  }
+</style>
 </head>
 <body>
-    
-<!-- ---------- navbar ----------- -->
 
-{% include 'navbar.html' %}
+   <!-- ---------- navbar ----------- -->
 
-
-
-i am clinitians
+   {% include 'navbar.html' %}
 
 
-{% if current_user.is_authenticated %}
-<p>{{user_data.username}}</p>
-{% else %}
-<p>user is not logged in</p>
-{% endif %}
 
-</body>
-</html>
+   i am clinitians
+
+
+   {% if current_user.is_authenticated %}
+   <p>{{user_data.username}}</p>
+   {% else %}
+   <p>user is not logged in</p>
+   {% endif %}
+
+
+
+   <button class="prev-btn btn" onclick="prevSlide()">Prev</button>
+<div class="slider-container">
+  <div class="slider">
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
+      <div class="card-content">
+        <h3>Dr. John Doe</h3>
+        <p>Description of Dr. John Doe.</p>
+        <p>Rating: <span id="rating1">4/5</span></p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
+      <div class="card-content">
+        <h3>Dr. Jane Smith</h3>
+        <p>Description of Dr. Jane Smith.</p>
+        <p>Rating: <span id="rating2">4/5</span></p>
+      </div>
+    </div>
+    <!-- Add more cards as needed -->
+    <div class="card">
+        <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
+        <div class="card-content">
+          <h3>Dr. John Doe</h3>
+          <p>Description of Dr. John Doe.</p>
+          <p>Rating: <span id="rating1">4/5</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
+        <div class="card-content">
+          <h3>Dr. Jane Smith</h3>
+          <p>Description of Dr. Jane Smith.</p>
+          <p>Rating: <span id="rating2">4/5</span></p>
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
+        <div class="card-content">
+          <h3>Dr. John Doe</h3>
+          <p>Description of Dr. John Doe.</p>
+          <p>Rating: <span id="rating1">4/5</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
+        <div class="card-content">
+          <h3>Dr. Jane Smith</h3>
+          <p>Description of Dr. Jane Smith.</p>
+          <p>Rating: <span id="rating2">Fetching...</span></p>
+        </div>
+      </div>
+
+
+
+
+
+
+  </div>
+</div>
+<button class="next-btn btn" onclick="nextSlide()">Next</button>
+
+
+<script>
+  const slider = document.querySelector('.slider');
+  const cards = document.querySelectorAll('.card');
+  let currentIndex = 0;
+
+//   const doctors = [
+//     {
+//       name: "Dr. John Doe",
+//       description: "Description of Dr. John Doe.",
+//       imageUrl: "https://via.placeholder.com/300"
+//     },
+//     {
+//       name: "Dr. Jane Smith",
+//       description: "Description of Dr. Jane Smith.",
+//       imageUrl: "https://via.placeholder.com/300"
+//     }
+//     // Add more doctors as needed
+//   ];
+
+ 
+
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  }
+
+  function nextSlide() {
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      updateSlider();
+    }
+  }
+
+  function updateSlider() {
+    const cardWidth = cards[0].offsetWidth;
+    slider.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+    fetchRating(currentIndex);
+    // Set the image URL dynamically
+    cards[currentIndex].querySelector('img').src = doctors[currentIndex].imageUrl;
+  }
+
+  // Initial rating fetch
+  fetchRating(currentIndex);
+</script>

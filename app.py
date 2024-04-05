@@ -19,6 +19,7 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY', secret_key)
 client = MongoClient('mongodb://localhost:27017/')
 db = client['MyHealth_Hero']
 users_collection = db['users']
+users_community = db['users_community']
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -172,9 +173,26 @@ def community():
 
     if current_user.is_authenticated:  # Check if the user is authenticated
         user_data = users_collection.find_one({'username': current_user.username})
-    return render_template('community.html',user_data= user_data)
 
 
+    # Fetch all messages from users_community collection
+    messages = users_community.find()
+
+    return render_template('community.html', messages=messages,user_data=user_data)
+
+
+
+
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    data = request.json
+    message = data['message']
+    username = data['username']
+
+    
+    # Save message to MongoDB users_community collection
+    users_community.insert_one({'username': username, 'message': message})
+    return redirect(url_for('community'))
 
 
 
