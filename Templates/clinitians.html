@@ -33,6 +33,10 @@
     height: 70%;
   }
 
+  .card :hover{
+cursor: pointer;
+  }
+
   .card img {
     width: 90%;
     height: 200px;
@@ -103,15 +107,15 @@
    <button class="prev-btn btn" onclick="prevSlide()">Prev</button>
 <div class="slider-container">
   <div class="slider">
-    <div class="card">
+    <div class="card" onclick="handleBooking(this)">
       <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
       <div class="card-content">
         <h3>Dr. John Doe</h3>
-        <p>Description of Dr. John Doe.</p>
+        <p>Dr. is very good doctor and expert in identifying bugs</p>
         <p>Rating: <span id="rating1">4/5</span></p>
       </div>
     </div>
-    <div class="card">
+    <div class="card" onclick="handleBooking(this)">
       <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
       <div class="card-content">
         <h3>Dr. Jane Smith</h3>
@@ -120,7 +124,7 @@
       </div>
     </div>
     <!-- Add more cards as needed -->
-    <div class="card">
+    <div class="card" onclick="handleBooking(this)">
         <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
         <div class="card-content">
           <h3>Dr. John Doe</h3>
@@ -128,7 +132,7 @@
           <p>Rating: <span id="rating1">4/5</span></p>
         </div>
       </div>
-      <div class="card">
+      <div class="card" onclick="handleBooking(this)">
         <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
         <div class="card-content">
           <h3>Dr. Jane Smith</h3>
@@ -211,4 +215,40 @@
 
   // Initial rating fetch
   fetchRating(currentIndex);
+
+
+
+
+
+
+//   ------- for booking -------- 
+function handleBooking(card) {
+    // Extract information from the clicked card
+    var doctorName = card.querySelector('h3').innerText;
+    var doctorDescription = card.querySelector('.card-content p:nth-child(2)').innerText;
+    var rating = card.querySelector('span').innerText;
+    var imageUrl = card.querySelector('img').src;
+
+    // Send AJAX request to Flask server
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/handling_booking", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Redirect to book appointment page after successful response
+        // window.location.href = '/handling_booking'; // Or any other route if needed
+        window.location.href = '/handling_booking?doctorName=' + encodeURIComponent(doctorName) + '&doctorDescription=' + encodeURIComponent(doctorDescription) + '&rating=' + encodeURIComponent(rating) + '&imageUrl=' + encodeURIComponent(imageUrl);
+      }
+    };
+    var data = JSON.stringify({
+      doctorName: doctorName,
+      doctorDescription: doctorDescription,
+      rating: rating,
+      imageUrl: imageUrl
+    });
+    xhr.send(data);
+  }
+
+
+
 </script>

@@ -20,6 +20,9 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['MyHealth_Hero']
 users_collection = db['users']
 users_community = db['users_community']
+appointments_collection = db['appointments_collection']
+
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -193,6 +196,88 @@ def send_message():
     # Save message to MongoDB users_community collection
     users_community.insert_one({'username': username, 'message': message})
     return redirect(url_for('community'))
+
+
+
+
+
+
+
+
+
+
+# --------- for handling booking ---------- 
+
+@app.route('/handling_booking', methods=['POST','GET'])
+def handle_booking():
+    user_data = None  # Initialize user_data to None
+    if current_user.is_authenticated:  # Check if the user is authenticated
+        user_data = users_collection.find_one({'username': current_user.username})
+
+
+    if request.method == 'POST':
+        data = request.get_json()  # Get the JSON data sent from the client-side JavaScript
+        doctor_name = data.get('doctorName')  # Extract the doctor's name
+        doctor_description = data.get('doctorDescription')  # Extract the doctor's description
+        rating = data.get('rating')  # Extract the rating
+        image_url = data.get('imageUrl')  # Extract the image URL
+
+
+        # Pass the extracted data to the HTML template
+        return render_template('book_appointment.html', doctor_name=doctor_name, doctor_description=doctor_description, rating=rating, image_url=image_url,user_data=user_data)
+
+    elif request.method == 'GET':
+        doctor_name = request.args.get('doctorName')
+        doctor_description = request.args.get('doctorDescription')
+        rating = request.args.get('rating')
+        image_url = request.args.get('imageUrl')
+        print(doctor_name)
+        print(doctor_description)
+        print(image_url)
+        # If the route is accessed with a GET request (e.g., when rendering a template)
+        # You can render the template here
+        return render_template('book_appointment.html',doctor_name=doctor_name, doctor_description=doctor_description, rating=rating, image_url=image_url,user_data=user_data)
+        
+
+
+
+
+
+
+
+
+# ----------- submit appointment ----------------
+@app.route('/submit_appointment', methods=['POST','GET'])
+def submit_appointment():
+
+    if request.method == 'POST':
+      username = request.form['username']
+      time_slot = request.form['time_slot']
+      concern = request.form['concern']
+      print(username)
+      print(time_slot)
+      print(concern)
+      # Insert the data into the appointment collection
+      appointment_data = {
+            'username': username,
+            'time_slot': time_slot,
+            'concern': concern
+       }
+      appointments_collection.insert_one(appointment_data)      
+
+      user_data = users_collection.find_one({'username': username})
+
+      
+
+
+        # Pass the extracted data to the HTML template
+    return render_template('profile.html',user_data=user_data)
+
+
+
+
+
+
 
 
 
