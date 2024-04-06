@@ -7,6 +7,7 @@
 
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
   .slider-container {
     width: 80%;
@@ -91,15 +92,16 @@ cursor: pointer;
 
    {% include 'navbar.html' %}
 
-   main module 
+
 
   
 
 
  
 
-
-   <button class="prev-btn btn" onclick="prevSlide()">Prev</button>
+<div style="margin-top: 5%;">
+  <h1 style="text-align: center; margin-bottom: 10px;">THERAPIST</h1>
+   <button class="prev-btn btn" onclick="prevSlide()"><i class="fa fa-angle-left" style="font-size:36px"></i></button>
 <div class="slider-container">
   <div class="slider">
     <div class="card" onclick="handleBooking(this)">
@@ -158,11 +160,100 @@ cursor: pointer;
 
 
 
+  </div>
+</div>
+<button class="next-btn btn" onclick="nextSlide()"><i class="fa fa-angle-right" style="font-size:36px"></i></button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- --------- prescribers ------------ -->
+<div style="margin-top: 5%;">
+  <h1 style="text-align: center; margin-bottom: 10px;">PRESCRIBERS</h1>
+   <button class="prev-btn btn" onclick="prevSlide()"><i class="fa fa-angle-left" style="font-size:36px"></i></button>
+<div class="slider-container">
+  <div class="slider">
+    <div class="card" onclick="handleBooking(this)">
+      <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
+      <div class="card-content">
+        <h3>Dr. John Doe</h3>
+        <p>Dr. is very good doctor and expert in identifying bugs</p>
+        <p>Rating: <span id="rating1">4/5</span></p>
+      </div>
+    </div>
+    <div class="card" onclick="handleBooking(this)">
+      <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
+      <div class="card-content">
+        <h3>Dr. Jane Smith</h3>
+        <p>Description of Dr. Jane Smith.</p>
+        <p>Rating: <span id="rating2">4/5</span></p>
+      </div>
+    </div>
+    <!-- Add more cards as needed -->
+    <div class="card" onclick="handleBooking(this)">
+        <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
+        <div class="card-content">
+          <h3>Dr. John Doe</h3>
+          <p>Description of Dr. John Doe.</p>
+          <p>Rating: <span id="rating1">4/5</span></p>
+        </div>
+      </div>
+      <div class="card" onclick="handleBooking(this)">
+        <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
+        <div class="card-content">
+          <h3>Dr. Jane Smith</h3>
+          <p>Description of Dr. Jane Smith.</p>
+          <p>Rating: <span id="rating2">4/5</span></p>
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/doc1.png') }}" alt="Doctor 1">
+        <div class="card-content">
+          <h3>Dr. John Doe</h3>
+          <p>Description of Dr. John Doe.</p>
+          <p>Rating: <span id="rating1">4/5</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/doc2.png') }}" alt="Doctor 2">
+        <div class="card-content">
+          <h3>Dr. Jane Smith</h3>
+          <p>Description of Dr. Jane Smith.</p>
+          <p>Rating: <span id="rating2">Fetching...</span></p>
+        </div>
+      </div>
+
+
 
 
   </div>
 </div>
-<button class="next-btn btn" onclick="nextSlide()">Next</button>
+<button class="next-btn btn" onclick="nextSlide()"><i class="fa fa-angle-right" style="font-size:36px"></i></button>
+
+</div>
+
+
+
+
+
+
+
 
 
 <script>
@@ -189,18 +280,18 @@ cursor: pointer;
   function prevSlide() {
     if (currentIndex > 0) {
       currentIndex--;
-      updateSlider();
+      updateslider();
     }
   }
 
   function nextSlide() {
     if (currentIndex < cards.length - 1) {
       currentIndex++;
-      updateSlider();
+      updateslider();
     }
   }
 
-  function updateSlider() {
+  function updateslider() {
     const cardWidth = cards[0].offsetWidth;
     slider.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
     fetchRating(currentIndex);
@@ -247,3 +338,46 @@ function handleBooking(card) {
 
 
 </script>
+
+
+
+
+  <!-- ----------- footer --------  -->
+
+  {% include 'footer.html'%}
+  <style>
+    .nav-link {
+        box-shadow: inset 0 0 0 0  #378CE7;
+        /* color: #54b3d6; */
+        color: #378CE7;
+        /* margin: 0 -0.15rem; */
+        /* font-size: larger; */
+        font-weight: 600;
+        padding: 0 -0.25rem;
+        transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    
+    .nav-link:hover {
+        box-shadow: inset 190px 0 0 0 #378CE7;
+        color: white;
+    }
+    
+    
+    
+    
+    
+    
+    .navbar-nav{
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        /* border: 4px solid red; */
+        width: 100%;
+    }
+    
+    
+    
+        </style>
+</body>
+
+</html>

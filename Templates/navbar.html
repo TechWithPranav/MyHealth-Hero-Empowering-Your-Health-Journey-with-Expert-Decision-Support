@@ -9,18 +9,18 @@
 
     <style>
 .nav-link {
-    box-shadow: inset 0 0 0 0  #5356FF;
+    box-shadow: inset 0 0 0 0  #378CE7;
     /* color: #54b3d6; */
     color: #378CE7;
-    margin: 0 -0.25rem;
+    /* margin: 0 -0.15rem; */
     /* font-size: larger; */
     font-weight: 600;
-    padding: 0 0.25rem;
+    padding: 0 -0.25rem;
     transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-    box-shadow: inset 125px 0 0 0 #5356FF;
+    box-shadow: inset 190px 0 0 0 #378CE7;
     color: white;
 }
 
@@ -32,7 +32,7 @@
 .navbar-nav{
     display: flex;
     justify-content: center;
-    gap: 5em;
+    gap: 1em;
     /* border: 4px solid red; */
     width: 100%;
 }
@@ -48,7 +48,7 @@
         <div class="position-sticky top-0"> <nav class="navbar navbar-expand-lg bg-light shadow p-3  bg-body-tertiary">
             <div class="container-fluid">
               <a class="navbar-brand animate__animated animate__flipInX animate__infinite animate__delay-1s" href="/">
-                <span class="d-block text-uppercase text-primary fw-bold fs-3 balsamiq-sans-bold" style="text-stroke: 7px #4896ea;">MyHealth Hero</span>
+                <span class="d-block text-uppercase  fw-bold fs-3 balsamiq-sans-bold" style="text-stroke: 7px #378CE7; color: #378CE7;">MyHealth Hero</span>
               </a>
       
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,21 +61,21 @@
                     <a class="nav-link fs-6  balsamiq-sans-bold" aria-current="page" href="/">HOME</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link fs-6 balsamiq-sans-bold" href="/mental">Mental Health Test</a>
+                    <a class="nav-link fs-6 balsamiq-sans-bold" href="/mental">MENTAL HEALTH TEST</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/analysis">Analysis Report</a>
+                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/analysis">ANALYSIS</a>
                   </li>
 
                   
                   {# Check if the username starts with 'dr' #}
                   {% if user_data and user_data.username.startswith('dr') %}
                       <li class="nav-item">
-                          <a class="nav-link fs-6 balsamiq-sans-bold" href="/set_goals">Set Goals</a>
+                          <a class="nav-link fs-6 balsamiq-sans-bold" href="/set_goals">SET GOALS</a>
                       </li>
                   {% else %}
                       <li class="nav-item">
-                          <a class="nav-link fs-6 balsamiq-sans-bold" href="/clinitians">For Clinicians</a>
+                          <a class="nav-link fs-6 balsamiq-sans-bold" href="/clinitians">CLINIANS</a>
                       </li>
                   {% endif %}
                   
@@ -83,19 +83,19 @@
 
 
                   <li class="nav-item">
-                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/community">Community</a>
+                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/community">COMMUNITY</a>
                   </li>
                 </ul>
       
                 {% if current_user.is_authenticated %}
             <a href="{{url_for('profile')}}"><img src="{{ url_for('static', filename='images/male_profile.gif') }}" alt="" srcset="" class="w-125 mx-3 rounded-circle"></a>
-            <a href="{{ url_for('logout') }}" class="btn btn-outline-dark mx-2 fs-5">Logout</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-dark mx-2 fs-5">LOGOUT</a>
             {% else %}
             <form class="d-flex" action="{{ url_for('login') }}" role="signup">
-                <button class="btn btn-outline-danger mx-2 fs-5 balsamiq-sans-bold" type="submit">Login</button>
+                <button class="btn btn-outline-danger mx-2 fs-5 balsamiq-sans-bold" type="submit">LOGIN</button>
             </form>
             <form class="d-flex" action="{{ url_for('signup') }}" role="signup">
-                <button class="btn btn-outline-success mx-2 fs-5 balsamiq-sans-bold" type="submit">Signup</button>
+                <button class="btn btn-outline-success mx-2 fs-5 balsamiq-sans-bold" type="submit">SIGNUP</button>
             </form>
             {% endif %}
 

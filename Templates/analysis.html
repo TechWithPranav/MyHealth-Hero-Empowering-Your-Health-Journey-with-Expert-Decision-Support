@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analysis.css') }}">
 </head>
 <body>
     
@@ -11,16 +14,94 @@
 
 {% include 'navbar.html' %}
 
-i am analysis
 
 
-{% if current_user.is_authenticated %}
+
+<!-- {% if current_user.is_authenticated %}
 <p>{{user_data.username}}</p>
 {% else %}
 <p>user is not logged in</p>
-{% endif %}
+{% endif %} -->
 
 
 
+
+
+<!-- -------  main --------- -->
+<div class="container" style="display: flex; ">
+    <div class="containers">
+        <h2>{{ user_data1.user_data }}'s Survey Report</h2>
+        
+        <div class="card-container">
+            {% for question in user_data1.questions %}
+            <div class="card">
+                <b><h3=5>Q. {{ question.question_text }}</h3=5></b><br>
+                <p><b>Your Answer:</b> {{ user_data1.answers.pop(0) }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="containers2">
+        <h2>Mental Health Prediction</h2>
+        <div class="card-container2">
+            <div class="card">
+                <p><b>Your today's experience :</b><br> {{ user_data1.explanation }}</p>
+            </div>
+            <div class="card">
+                <p><h3=5><b>{{ user_data1.stressed}}</b></h3><br></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ----------- footer --------  -->
+
+  {% include 'footer.html'%}
+  <style>
+    .nav-link {
+        box-shadow: inset 0 0 0 0  #378CE7;
+        /* color: #54b3d6; */
+        color: #378CE7;
+        /* margin: 0 -0.15rem; */
+        /* font-size: larger; */
+        font-weight: 600;
+        padding: 0 -0.25rem;
+        transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    
+    .nav-link:hover {
+        box-shadow: inset 190px 0 0 0 #378CE7;
+        color: white;
+    }
+    
+    
+    
+    
+    
+    
+    .navbar-nav{
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        /* border: 4px solid red; */
+        width: 100%;
+    }
+    
+    
+    
+        </style>
 </body>
 </html>

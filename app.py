@@ -7,6 +7,12 @@ from bson import ObjectId  # Import ObjectId from bson module
 
 import uuid  # For generating unique IDs
 import smtplib  # For sending emails
+import joblib
+import re
+from urllib.parse import urlparse
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 
 
 app = Flask(__name__)
@@ -31,11 +37,65 @@ users_collection = db['users']
 users_community = db['users_community']
 appointments_collection = db['appointments_collection']
 goals_collection = db['goals']
-
+users_mental_data = db['users_mental_data']
+mental_question_collection = db['mental_question']
 
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
+
+# ------ for prediction ------
+# Load the trained model
+model = joblib.load(r"C:\Users\prana\Desktop\prathmesh\prathmesh zip mental\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support-main\StressidentificationNLP")
+
+# Load the vectorizer
+vectorizer = joblib.load(r"C:\Users\prana\Desktop\prathmesh\prathmesh zip mental\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support-main\TfidfVectorizer.joblib")
+
+# Define preprocessing functions
+def text_process(text):
+    # Remove brackets
+    text = re.sub('[][)(]', ' ', text)
+    # Remove URLs
+    text = [word for word in text.split() if not urlparse(word).scheme]
+    text = ' '.join(text)
+    # Remove escape characters
+    text = re.sub(r'\@\w+', '', text)
+    # Remove HTML tags
+    text = re.sub(re.compile("<.*?>"), '', text)
+    # Keep only alphanumeric characters
+    text = re.sub("[^A-Za-z0-9]", ' ', text)
+    # Convert to lowercase
+    text = text.lower()
+    # Tokenize text
+    tokens = word_tokenize(text)
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    tokens = [word for word in tokens if word not in stop_words]
+    # Lemmatization
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    return ' '.join(tokens)
+
+# Function to predict stress
+def predictor(text):
+    processed_text = text_process(text)
+    # Vectorize the text
+    processed_text_vectorized = vectorizer.transform([text])
+    # Predict using the model
+    prediction = model.predict(processed_text_vectorized)
+    if prediction[0] == 1:
+        return "It seems that mentally you are not well. We suggest you to consult the therapist."
+    elif prediction[0] == 0:
+        return "It seems that you are mentally fit. But if you think mentally you are not well you can still consult the therapist."
+
+
+
+
+
+
+
 
 # User class for Flask-Login
 class User(UserMixin):
@@ -356,25 +416,121 @@ def profile():
 # ---------- mental test ----------- 
 @app.route('/mental',methods=['GET','POST'])
 def mental():
+#     user_data = None  # Initialize user_data to None
+
+#     if current_user.is_authenticated:  # Check if the user is authenticated
+#         user_data = users_collection.find_one({'username': current_user.username})
+
+#     return render_template('mental.html',user_data= user_data)
+
     user_data = None  # Initialize user_data to None
 
     if current_user.is_authenticated:  # Check if the user is authenticated
         user_data = users_collection.find_one({'username': current_user.username})
 
-    return render_template('mental.html',user_data= user_data)
+    # Fetch questions from the database
+    questions_cursor = mental_question_collection.find({}, {'_id': 0, 'question_text': 1})
+
+    # Extract the questions from the cursor
+    questions = [question['question_text'] for question in questions_cursor]
+
+    return render_template('mental.html', user_data=user_data, questions=enumerate(questions, start=1))
+
+
+
+
 
 
 
 # ---------- Analysis ----------- 
 @app.route('/analysis',methods=['GET','POST'])
 def analysis():
+    # Get the form data
+    # user_data = None
+    # if current_user.is_authenticated:  # Check if the user is authenticated
+    #     user_data = users_collection.find_one({'username': current_user.username})
+    user_data1 = None  # Initialize user_data to None
+    user = None
     user_data = None  # Initialize user_data to None
 
     if current_user.is_authenticated:  # Check if the user is authenticated
-        user_data = users_collection.find_one({'username': current_user.username})
+        user_data = users_collection.find_one({'username': current_user.username})    
+
+    if request.method=='POST':
+     answers = []
+     prefix = 'question'
+     for i in range(1,21):
+        answers.append(request.form[prefix+str(i)])
+
+     explanation = request.form['explanation']
+     user = request.form['user_name']
+     
+     print(user)
+    
+     user_data1 = {
+        'answers': answers,
+        'explanation': explanation,
+        'user_data' : user
+     }
+     user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
+     if user_answers == None:
+        users_mental_data.insert_one(user_data1)
+     else:
+        filter = {'user_data':current_user.username}
+        update1 = {'$set': {'explanation': explanation}}
+        update2 = {'$set': {'answers': answers}}
+        users_mental_data.update_one(filter,update1)
+        users_mental_data.update_one(filter,update2)
+     
+     if current_user.is_authenticated:  # Check if the user is authenticated
+            user = current_user.username
+            questions = mental_question_collection.find()
+            print('hello')
+            print(current_user.username)
+            user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
+            if user_answers != None:
+                explanation = user_answers['explanation']
+                stressed = predictor(user_answers['explanation'])
+                user_answers = user_answers['answers'] 
+                
+                user_data1 = {
+                    'questions' : questions,
+                    'answers': user_answers,
+                    'explanation': explanation,
+                    'stressed': stressed,
+                    'user_data' : user
+                }
+    else:
+        if current_user.is_authenticated:  # Check if the user is authenticated
+            user = current_user.username
+            questions = mental_question_collection.find()
+            print('hello')
+            print(current_user.username)
+            user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
+            if user_answers != None:
+                explanation = user_answers['explanation']
+                stressed = predictor(user_answers['explanation'])
+                user_answers = user_answers['answers'] 
+                
+                user_data1 = {
+                    'questions' : questions,
+                    'answers': user_answers,
+                    'explanation': explanation,
+                    'stressed': stressed,
+                    'user_data' : user
+                }
+                print(user_data1)
+    print(user_data1)
+    print('hi')
+    return render_template('analysis.html',user_data1= user_data1,user_data=user_data)
 
 
-    return render_template('analysis.html',user_data= user_data)
+
+
+
+
+
+
 
 
 
