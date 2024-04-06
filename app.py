@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, request, session, url_for, f
 from pymongo import MongoClient
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin,current_user
 from bson import ObjectId  # Import ObjectId from bson module
+from datetime import datetime
 
 import uuid  # For generating unique IDs
 import smtplib  # For sending emails
@@ -39,6 +40,7 @@ appointments_collection = db['appointments_collection']
 goals_collection = db['goals']
 users_mental_data = db['users_mental_data']
 mental_question_collection = db['mental_question']
+goals_done = db['goals_done']
 
 
 login_manager = LoginManager()
@@ -196,13 +198,15 @@ def home():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
+   
    user_data = None
    appointments_data = None
    goals_collection_main=None
    doctor_name = None
    time_slot = None
    concern = None
-   google_meet_link = None    
+   google_meet_link = None  
+     
 
 
    if current_user.is_authenticated:
@@ -278,6 +282,14 @@ def profile():
      g4 = request.form.get('goal4_main')
     
      g5 = request.form.get('goal5_main')
+
+
+     
+     
+     
+     
+     
+
      if g1:
         session['i1'] += 1
      if g2:
@@ -301,115 +313,153 @@ def profile():
       goal_2 = goal2[session['i2']] if goal2 and len(goal2) > session['i2'] else None
       goal_3 = goal3[session['i3']] if goal3 and len(goal3) > session['i3'] else None
       goal_4 = goal4[session['i4']] if goal4 and len(goal4) > session['i4'] else None
-     goal_5 = goal5[session['i5']] if goal5 and len(goal5) > session['i5'] else None
+      goal_5 = goal5[session['i5']] if goal5 and len(goal5) > session['i5'] else None
+
+
+
+# -------- for goals done or not for theripist giving ---------
+      donebtn = None
+      donebtn= request.form['done_btn']
+      print(donebtn)
+      if donebtn:
+        if g1: 
+         print(g1) 
+         print(goal_1)
+         current_date = datetime.now().strftime("%Y-%m-%d")
+         current_time = datetime.now().strftime("%H:%M:%S")
+    #    return f"Current time and date: {current_time}"
+         print(current_date)
+         print(current_time)
+
+         username = current_user.username
+  
+        # Check if a document exists for the current username and current date
+         existing_goal_doc = goals_done.find_one({'username': username, 'current_date': current_date})
+            
+         if existing_goal_doc:
+             # Update the existing document with the new goal
+             goals_done.update_one(
+                 {'_id': existing_goal_doc['_id']},
+                 {'$set': {'goal1': g1, 'goal_assigned1': goal_1}}
+             )
+         else:
+             # Insert a new document with the new goal
+             goals_finish = {
+                 'username': username,
+                 'current_date': current_date,
+                 'goal1': g1,
+                 'goal_assigned1': goal_1,
+                 'current_time': current_time
+             }
+             goals_done.insert_one(goals_finish)
+
+
+
+
+
+         if g2:
+          print(g2) 
+          print(goal_2)
+          current_date = datetime.now().strftime("%Y-%m-%d")
+          current_time = datetime.now().strftime("%H:%M:%S")
+         #    return f"Current time and date: {current_time}"
+          print(current_date)
+          print(current_time)
+     
+         username = current_user.username
+  
+           # Check if a document exists for the current username and current date
+         existing_goal_doc = goals_done.find_one({'username': username, 'current_date': current_date})
+                
+         if existing_goal_doc:
+               # Update the existing document with the new goal
+                goals_done.update_one(
+                   {'_id': existing_goal_doc['_id']},
+                    {'$set': {'goal2': g2, 'goal_assigned2': goal_1}}
+                )
+         else:
+                # Insert a new document with the new goal
+                goals_finish = {
+                    'username': username,
+                    'current_date': current_date,
+                    'goal2': g2,
+                    'goal_assigned2': goal_2,
+                    'current_time': current_time
+                }
+                goals_done.insert_one(goals_finish)
+     
+
+
+
+         if g3: 
+            print(g3)
+            print(goal_3)
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_time = datetime.now().strftime("%H:%M:%S")
+         #    return f"Current time and date: {current_time}"
+            print(current_date)
+            print(current_time)
+     
+            username = current_user.username
+            goals_finish = {
+           'username' : username,    
+            'goal3': g3,
+            'goal_assigned': goal_3,
+            'current_date': current_date,
+            'current_time': current_time,
+            }
+
+
+
+         if g4: 
+            print(g4)
+            print(goal_4)
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_time = datetime.now().strftime("%H:%M:%S")
+         #    return f"Current time and date: {current_time}"
+            print(current_date)
+            print(current_time)
+
+            username = current_user.username
+            goals_finish = {
+            'username' : username,    
+            'goal4': g4,
+            'goal_assigned': goal_4,
+            'current_date': current_date,
+            'current_time': current_time,
+            }
+
+
+
+
+         if g5: 
+            print(g5)
+            print(goal_5)
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_time = datetime.now().strftime("%H:%M:%S")
+         #    return f"Current time and date: {current_time}"
+            print(current_date)
+            print(current_time)
+
+            username = current_user.username
+            goals_finish = {
+            'username' : username,    
+            'goal5': g5,
+            'goal_assigned': goal_5,
+            'current_date': current_date,
+            'current_time': current_time,
+            }
+
+
+
+
+
+
 
    return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
   
 
-    # goal_1 =None       
-    # goal_2 =None    
-    # goal_3=None      
-    # goal_4=None     
-    # goal_5 =None  
-
-
-
-    # g1 = None
-    # g2 = None
-    # g3 = None
-    # g4 = None
-    # g5 = None
-
-
-    # # Initialize index variables
-    # if 'i1' not in session:
-    #     session['i1'] = 0
-    # if 'i2' not in session:
-    #     session['i2'] = 0
-    # if 'i3' not in session:
-    #     session['i3'] = 0
-    # if 'i4' not in session:
-    #     session['i4'] = 0
-    # if 'i5' not in session:
-    #     session['i5'] = 0    
-
-    # if current_user.is_authenticated:
-    #     user_data = users_collection.find_one({'username': current_user.username})
-    #     appointments_data = appointments_collection.find_one({'username': current_user.username})
-    #     goals_collection_main = goals_collection.find_one({'username': current_user.username})
-
-    # doctor_name = None
-    # time_slot = None
-    # concern = None
-    # google_meet_link = None
-
-    # g1 = request.form.get('goal1_main')
-
-    # g2 = request.form.get('goal2_main')
-
-    # g3 = request.form.get('goal3_main')
-
-    # g4 = request.form.get('goal4_main')
     
-    # g5 = request.form.get('goal5_main')
-
-    # print(i1)
-    # print(i2)
-    # print(i3)
-    # print(i4)
-    # print(i5)
-
-    # if g1:
-    #     session['i1'] += 1
-    # if g2:
-    #     session['i2'] += 1
-    # if g3:
-    #     session['i3'] += 1
-    # if g4:
-    #     session['i4'] += 1
-    # if g5:
-    #     session['i5'] += 1
-
-
-    
-    # if appointments_data:
-    #     doctor_name = appointments_data.get('doctor_name')
-    #     time_slot = appointments_data.get('time_slot')
-    #     concern = appointments_data.get('concern')
-    #     google_meet_link = appointments_data.get('google_meet_link')
-
-    # if goals_collection_main:
-    #     # Fetch goal1 and get the first goal from the array
-    #     goal1 = goals_collection_main.get('goal1', [])
-    #     goal2 = goals_collection_main.get('goal2', [])
-    #     goal3 = goals_collection_main.get('goal3', [])
-    #     goal4 = goals_collection_main.get('goal4', [])
-    #     goal5 = goals_collection_main.get('goal5', [])
-
-    #     if goal1 and len(goal1) > session['i1']:
-    #      goal_1 = goal1[session['i1']]
-    #     if goal2 and len(goal2) > session['i2']:
-    #         goal_2 = goal2[session['i2']]
-    #     if goal3 and len(goal3) > session['i3']:
-    #         goal_3 = goal3[session['i3']]
-    #     if goal4 and len(goal4) > session['i4']:
-    #         goal_4 = goal4[session['i4']]
-    #     if goal5 and len(goal5) > session['i5']:
-    #         goal_5 = goal5[session['i5']]
-
-
-    # # print(goal_1)  # Print goal for debugging        
-    # # print(goal_2)  # Print goal for debugging        
-    # # print(goal_3)  # Print goal for debugging        
-    # # print(goal_4)  # Print goal for debugging        
-    # # print(goal_5)  # Print goal for debugging        
-
-    # # print(appointments_data)  # Print appointments_data for debugging
-  
-    # return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
-  
-
-
 
 
 
@@ -525,6 +575,19 @@ def analysis():
     return render_template('analysis.html',user_data1= user_data1,user_data=user_data)
 
 
+
+
+
+# --------- doctor anaylysis ------------- 
+@app.route('/analysis_doctor',methods=['GET','POST'])
+def analysis_doctor():
+    user_data = None  # Initialize user_data to None
+
+    if current_user.is_authenticated:  # Check if the user is authenticated
+        user_data = users_collection.find_one({'username': current_user.username})
+
+
+    return render_template('analysis_doctor.html',user_data= user_data)
 
 
 

@@ -60,20 +60,28 @@
                   <li class="nav-item">
                     <a class="nav-link fs-6  balsamiq-sans-bold" aria-current="page" href="/">HOME</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link fs-6 balsamiq-sans-bold" href="/mental">MENTAL HEALTH TEST</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/analysis">ANALYSIS</a>
-                  </li>
+
+                
 
                   
                   {# Check if the username starts with 'dr' #}
                   {% if user_data and user_data.username.startswith('dr') %}
+                  <li class="nav-item">
+                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/analysis_doctor">VIEW ANALYSIS</a>
+                  </li>
                       <li class="nav-item">
                           <a class="nav-link fs-6 balsamiq-sans-bold" href="/set_goals">SET GOALS</a>
                       </li>
                   {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link fs-6 balsamiq-sans-bold" href="/mental">MENTAL HEALTH TEST</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/analysis">VIEW ANALYSIS</a>
+                  </li>
+                
+                  
                       <li class="nav-item">
                           <a class="nav-link fs-6 balsamiq-sans-bold" href="/clinitians">CLINIANS</a>
                       </li>

@@ -156,31 +156,36 @@ transform: translateY(-5px); /* Further lift on hover */
       <li class="list-group-item goal-item">{{goal_1}}
         <form class="d-inline" action="/profile" method="post">
           <input type="hidden" name="goal1_main" value="goal1">
-          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn">Alternative Goal</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: 3%;">Alternative</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn">Done</button>
         </form>
       </li>
       <li class="list-group-item goal-item">{{goal_2}}
         <form class="d-inline" action="/profile" method="post">
           <input type="hidden" name="goal2_main" value="goal2">
-          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn">Alternative Goal</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: 3%;">Alternative</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;">Done</button>
         </form>
       </li>
       <li class="list-group-item goal-item">{{goal_3}}
         <form class="d-inline" action="/profile" method="post">
           <input type="hidden" name="goal3_main" value="goal3">
-          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn">Alternative Goal</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: 3%;">Alternative</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;">Done</button>
         </form>
       </li>
       <li class="list-group-item goal-item">{{goal_4}}
         <form class="d-inline" action="/profile" method="post">
           <input type="hidden" name="goal4_main" value="goal4">
-          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn">Alternative Goal</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: 3%;">Alternative</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;">Done</button>
         </form>
       </li>
       <li class="list-group-item goal-item">{{goal_5}}
         <form class="d-inline" action="/profile" method="post">
           <input type="hidden" name="goal5_main" value="goal5" >
-          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn">Alternative Goal</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: 3%;">Alternative</button>
+          <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;">Done</button>
         </form>
       </li>
       <!-- Add more list items as needed -->
@@ -192,7 +197,7 @@ transform: translateY(-5px); /* Further lift on hover */
 </div>
  
 {% else %}
-  <p>No More Alternatives</p>
+  <!-- <p>No More Alternatives</p> -->
 
 
 {% endif %}
