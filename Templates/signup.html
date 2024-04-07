@@ -58,7 +58,7 @@
 
 
     <!-- -------signup ------------- -->
-
+<!-- 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul>
@@ -66,10 +66,10 @@
                 <li>{{message}}</li>
             {% endfor %}
         </ul>
-    {% endif %}
-{% endwith %}
+    {% endif %} -->
+<!-- {% endwith %} -->
 
-    <div class="container shadow p-3 mb-5 bg-body-tertiary w-50">
+    <div class="container shadow p-3 mb-5 bg-body-tertiary w-50" style="margin-top: 30px;">
         <h2>Sign Up</h2>
         <form action="/signup" method="post">
             <input type="text" name="firstname" placeholder="First Name" required>

@@ -344,11 +344,11 @@ def profile():
          
          print(g1) 
          print(goal_1)
-        #  current_date = datetime.now().strftime("%Y-%m-%d")
-        #  current_time = datetime.now().strftime("%H:%M:%S")
+         current_date = datetime.now().strftime("%Y-%m-%d")
+         current_time = datetime.now().strftime("%H:%M:%S")
 
-         current_date = '2024-04-08'
-         current_time = '04:23:06'
+        #  current_date = '2024-04-08'
+        #  current_time = '04:23:06'
          print(current_date)
          print(current_time)
 
@@ -382,11 +382,11 @@ def profile():
         if g2:
          print(g2) 
          print(goal_2)
-        #  current_date = datetime.now().strftime("%Y-%m-%d")
-        #  current_time = datetime.now().strftime("%H:%M:%S")
+         current_date = datetime.now().strftime("%Y-%m-%d")
+         current_time = datetime.now().strftime("%H:%M:%S")
 
-         current_date = '2024-04-08'
-         current_time = '04:23:06'         
+        #  current_date = '2024-04-08'
+        #  current_time = '04:23:06'         
          #    return f"Current time and date: {current_time}"
          print(current_date)
          print(current_time)
@@ -420,11 +420,11 @@ def profile():
         if g3: 
             print(g3)
             print(goal_3)
-            # current_date = datetime.now().strftime("%Y-%m-%d")
-            # current_time = datetime.now().strftime("%H:%M:%S")
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_time = datetime.now().strftime("%H:%M:%S")
 
-            current_date = '2024-04-08'
-            current_time = '04:23:06'
+            # current_date = '2024-04-08'
+            # current_time = '04:23:06'
             print(current_date)
             print(current_time)
      
@@ -457,10 +457,10 @@ def profile():
         if g4: 
             print(g4)
             print(goal_4)
-            # current_date = datetime.now().strftime("%Y-%m-%d")
-            # current_time = datetime.now().strftime("%H:%M:%S")
-            current_date = '2024-04-08'
-            current_time = '04:23:06'
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_time = datetime.now().strftime("%H:%M:%S")
+            # current_date = '2024-04-08'
+            # current_time = '04:23:06'
 
 
             print(current_date)
@@ -568,19 +568,18 @@ def mental():
 
 
 # ---------- Analysis ----------- 
+# ---------- Analysis ----------- 
 @app.route('/analysis',methods=['GET','POST'])
 def analysis():
     # Get the form data
     # user_data = None
     # if current_user.is_authenticated:  # Check if the user is authenticated
     #     user_data = users_collection.find_one({'username': current_user.username})
-    user_data1 = None  # Initialize user_data to None
-    user = None
     user_data = None  # Initialize user_data to None
-
-    if current_user.is_authenticated:  # Check if the user is authenticated
-        user_data = users_collection.find_one({'username': current_user.username})    
-
+    user = None
+    user_data1 = None
+    current_date_time = datetime.now()
+    formatted_date = current_date_time.strftime("%d%m%Y")
     if request.method=='POST':
      answers = []
      prefix = 'question'
@@ -593,30 +592,36 @@ def analysis():
      print(user)
     
      user_data1 = {
-        'answers': answers,
+        formatted_date: answers,
         'explanation': explanation,
-        'user_data' : user
+        'user_data' : user,
+        'dob':formatted_date
      }
-     user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
-     if user_answers == None:
-        users_mental_data.insert_one(user_data1)
-     else:
-        filter = {'user_data':current_user.username}
-        update1 = {'$set': {'explanation': explanation}}
-        update2 = {'$set': {'answers': answers}}
-        users_mental_data.update_one(filter,update1)
-        users_mental_data.update_one(filter,update2)
+     users_mental_data.insert_one(user_data1)
+    #  user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
+    #  if user_answers == None:
+    #     users_mental_data.insert_one(user_data)
+    #  else:
+    #     # filter = {'user_data':current_user.username}
+    #     # update1 = {'$set': {'explanation': explanation}}
+    #     # update2 = {'$set': {'answers': answers}}
+    #     # users_mental_data.update_one(filter,update1)
+    #     # users_mental_data.update_one(filter,update2)
+    #     users_mental_data.inser
      
      if current_user.is_authenticated:  # Check if the user is authenticated
+    
+            
             user = current_user.username
             questions = mental_question_collection.find()
+            
             print('hello')
             print(current_user.username)
             user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
             if user_answers != None:
                 explanation = user_answers['explanation']
                 stressed = predictor(user_answers['explanation'])
-                user_answers = user_answers['answers'] 
+                user_answers = user_answers[formatted_date] 
                 
                 user_data1 = {
                     'questions' : questions,
@@ -629,13 +634,15 @@ def analysis():
         if current_user.is_authenticated:  # Check if the user is authenticated
             user = current_user.username
             questions = mental_question_collection.find()
+            user = current_user.username
+            questions = mental_question_collection.find()
             print('hello')
             print(current_user.username)
             user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
             if user_answers != None:
                 explanation = user_answers['explanation']
                 stressed = predictor(user_answers['explanation'])
-                user_answers = user_answers['answers'] 
+                user_answers = user_answers[formatted_date] 
                 
                 user_data1 = {
                     'questions' : questions,
@@ -644,9 +651,10 @@ def analysis():
                     'stressed': stressed,
                     'user_data' : user
                 }
-                print(user_data1)
-    print(user_data1)
+                print(user_data)
+    print(user_data)
     print('hi')
+
     return render_template('analysis.html',user_data1= user_data1,user_data=user_data)
 
 
@@ -665,6 +673,54 @@ def analysis_doctor():
     return render_template('analysis_doctor.html',user_data= user_data)
 
 
+
+
+@app.route('/record',methods=['GET','POST'])
+def record():
+    user_data = None  # Initialize user_data to None
+    
+    date = request.form.get('d')
+    date_obj = datetime.strptime(date, "%Y-%m-%d")
+    formatted_date = date_obj.strftime("%d%m%Y")
+    
+    user_data1 = None
+    # print('Ho')
+    if current_user.is_authenticated:  # Check if the user is authenticated
+        user_data = users_collection.find_one({'username': current_user.username})
+        patient = request.form.get('patient')
+        
+        
+        user_answers = users_mental_data.find({'dob':formatted_date}) 
+        user_answer1 = user_answers[0] 
+        user_answer2 = user_answers[1]
+        print(user_answer1)
+        print(user_answer2)
+        # print(user_answers)
+        if user_answers!=None:
+            questions = mental_question_collection.find()
+            q = []
+            for question in questions:
+               q.append(question['question_text'])
+            
+            user_data1 = {
+                'answers':user_answer1[formatted_date],
+                'question' : q,
+                'user_data': patient,
+                'date':formatted_date
+            }
+            user_data2 = {
+                'answers':user_answer2[formatted_date],
+                'question' : q,
+                'user_data': patient,
+                'date':formatted_date
+            }
+            print(user_answers)
+            # Iterate over the cursor to access each document
+            
+             
+            
+        
+        return render_template('record.html',user_data1 = user_data1,user_data= user_data,user_data2 = user_data2)
 
 
 
@@ -923,12 +979,18 @@ def add_goal():
 # ----------- search track goals done by user ---------- 
 @app.route('/search', methods=['POST','GET'])
 def search():
+    user_data = None
+
+    if current_user.is_authenticated:
+        user_data = users_collection.find_one({'username': current_user.username})
     if request.method=='POST':
      username = request.form.get('username')
      user_data = goals_done.find({'username': username})
+    #  for temp in user_data:
+    #   print(temp)
      return render_template('results.html', username=username, user_data=user_data)
     if request.method=='GET':
-     return render_template('search.html')
+     return render_template('search.html',user_data=user_data)
 
 
 

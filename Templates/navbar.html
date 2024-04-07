@@ -44,6 +44,33 @@
 <body>
     
 
+  
+  
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <body>
+     
+
+
+   
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate">
+    </script>
+      <script>
+          function loadGoogleTranslate(){
+              new google.translate.TranslateElement("google_element");
+          }
+      </script>
+  
+
+  
+
+
     <section id="navbar" class="">
         <div class="position-sticky top-0"> <nav class="navbar navbar-expand-lg bg-light shadow p-3  bg-body-tertiary">
             <div class="container-fluid">
@@ -70,7 +97,7 @@
                     <a class="nav-link fs-6 balsamiq-sans-bold " href="/analysis_doctor">VIEW ANALYSIS</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/search">Track Goals</a>
+                    <a class="nav-link fs-6 balsamiq-sans-bold " href="/search">TRACK GOALS</a>
                   </li>
                       <li class="nav-item">
                           <a class="nav-link fs-6 balsamiq-sans-bold" href="/set_goals">SET GOALS</a>
@@ -86,7 +113,7 @@
                 
                   
                       <li class="nav-item">
-                          <a class="nav-link fs-6 balsamiq-sans-bold" href="/clinitians">CLINIANS</a>
+                          <a class="nav-link fs-6 balsamiq-sans-bold" href="/clinitians">CLINITIANS</a>
                       </li>
                   {% endif %}
                   
@@ -96,7 +123,14 @@
                   <li class="nav-item">
                     <a class="nav-link fs-6 balsamiq-sans-bold " href="/community">COMMUNITY</a>
                   </li>
+                  
+                  <li id="google_element">
+
+                  </li>
+              
+
                 </ul>
+
       
                 {% if current_user.is_authenticated %}
             <a href="{{url_for('profile')}}"><img src="{{ url_for('static', filename='images/male_profile.gif') }}" alt="" srcset="" class="w-125 mx-3 rounded-circle"></a>
@@ -118,6 +152,7 @@
       </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
-</body>
+
+
+  </body>
 </html>

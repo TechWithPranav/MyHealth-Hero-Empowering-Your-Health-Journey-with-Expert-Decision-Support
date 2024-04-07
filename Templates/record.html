@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/record.css') }}">
+
+    </head>
+
+ 
+          <style>
+        .nav-link {
+            box-shadow: inset 0 0 0 0 #378CE7;
+            /* color: #54b3d6; */
+            color: #378CE7;
+            /* margin: 0 -0.15rem; */
+            /* font-size: larger; */
+            font-weight: 600;
+            padding: 0 -0.25rem;
+            transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            box-shadow: inset 190px 0 0 0 #378CE7;
+            color: white;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            /* border: 4px solid red; */
+            width: 100%;
+        }
+    </style>
+    </style>
+
+<body>
+
+    <!-- -------------navbar -------------------  -->
+
+    {% include 'navbar.html' %}
+
+
+
+    <!-- <div class="container" >
+        <div class="containers">
+            <h2>{{ user_data1.user_data }}'s Report</h2>
+            {{user_data1}}
+            {{user_data1.question}}
+            {{user_data1.answers}}
+            <div class="card-container">
+                {% for question in user_data1.questions %}
+                <div class="card">
+                    <b>
+
+                        <h3=5>Q. {{ question.question_text }}</h3=5>
+                    </b><br>
+                    <p><b>Your Answer:</b> {{ user_data1.answers.pop(0) }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container" style="display: flex; ">
+        <div class="containers">
+            <h2>{{ user_data1.user_data }}'s Report</h2><br>
+            Date : {{user_data1.date[0:2]+'-'+user_data1.date[2:4]+'-'+user_data1.date[4:]}}<br>
+            <div class="card-container">
+                {% for i in range(0, 20) %}
+                <div class="card">
+                    <b>
+                        <h3=5>Q. {{ user_data1.question[i] }}</h3=5>
+                    </b><br>
+                    <p><b>Your Answer:</b> {{ user_data1.answers[i] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    
+        <div class="containers2">
+            <h2>{{ user_data2.user_data }}'s Report</h2><br>
+            Date : {{user_data2.date[0:2]+'-'+user_data2.date[2:4]+'-'+user_data2.date[4:]}}<br>
+            <div class="card-container2">
+                {% for i in range(0, 20) %}
+                <div class="card">
+                    <b>
+                        <h3=5>Q. {{ user_data2.question[i] }}</h3=5>
+                    </b><br>
+                    <p><b>Your Answer:</b> {{ user_data2.answers[i] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------- footer --------  -->
+
+    {% include 'footer.html'%}
+
+</body>
+
+</html>
