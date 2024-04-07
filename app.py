@@ -229,7 +229,12 @@ def profile():
    goal_2 =None    
    goal_3=None      
    goal_4=None     
-   goal_5= None  
+   goal_5= None 
+   flag1 = None
+   flag2 = None
+   flag3 = None
+   flag4 = None
+   flag5 = None    
 
 # Initialize index variables
    if 'i1' not in session:
@@ -247,6 +252,9 @@ def profile():
 # Handle GET requests
    if request.method == 'GET':
     # Reset index variables to 0 when the page is loaded
+     
+
+
      session['i1'] = 0
      session['i2'] = 0
      session['i3'] = 0
@@ -267,10 +275,11 @@ def profile():
         goal_4 = goal4[session['i4']] if goal4 else None
         goal_5 = goal5[session['i5']] if goal5 else None
 
-     return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
+        return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
 
    # Handle POST requests
    if request.method == 'POST':
+    # Increment index variables based on the form submission
     # Increment index variables based on the form submission
 
      g1 = request.form.get('goal1_main')
@@ -284,7 +293,6 @@ def profile():
      g5 = request.form.get('goal5_main')
 
 
-     
      
      
      
@@ -319,15 +327,28 @@ def profile():
 
 # -------- for goals done or not for theripist giving ---------
       donebtn = None
-      donebtn= request.form['done_btn']
+      
+      flag1 = None
+      flag2 = None
+      flag3 = None
+      flag4 = None
+      flag5 = None
+      donebtn = request.form.get('done_btn')  # Get the value or None if not found
+
       print(donebtn)
       if donebtn:
+  
+
+
         if g1: 
+         
          print(g1) 
          print(goal_1)
-         current_date = datetime.now().strftime("%Y-%m-%d")
-         current_time = datetime.now().strftime("%H:%M:%S")
-    #    return f"Current time and date: {current_time}"
+        #  current_date = datetime.now().strftime("%Y-%m-%d")
+        #  current_time = datetime.now().strftime("%H:%M:%S")
+
+         current_date = '2024-04-08'
+         current_time = '04:23:06'
          print(current_date)
          print(current_time)
 
@@ -352,19 +373,23 @@ def profile():
                  'current_time': current_time
              }
              goals_done.insert_one(goals_finish)
+             flag1 = True
 
 
 
 
 
-         if g2:
-          print(g2) 
-          print(goal_2)
-          current_date = datetime.now().strftime("%Y-%m-%d")
-          current_time = datetime.now().strftime("%H:%M:%S")
+        if g2:
+         print(g2) 
+         print(goal_2)
+        #  current_date = datetime.now().strftime("%Y-%m-%d")
+        #  current_time = datetime.now().strftime("%H:%M:%S")
+
+         current_date = '2024-04-08'
+         current_time = '04:23:06'         
          #    return f"Current time and date: {current_time}"
-          print(current_date)
-          print(current_time)
+         print(current_date)
+         print(current_time)
      
          username = current_user.username
   
@@ -373,66 +398,101 @@ def profile():
                 
          if existing_goal_doc:
                # Update the existing document with the new goal
-                goals_done.update_one(
-                   {'_id': existing_goal_doc['_id']},
-                    {'$set': {'goal2': g2, 'goal_assigned2': goal_1}}
-                )
+               goals_done.update_one(
+                  {'_id': existing_goal_doc['_id']},
+                   {'$set': {'goal2': g2, 'goal_assigned2': goal_2}}
+               )
          else:
-                # Insert a new document with the new goal
-                goals_finish = {
+            # Insert a new document with the new goal
+             goals_finish = {
                     'username': username,
                     'current_date': current_date,
                     'goal2': g2,
                     'goal_assigned2': goal_2,
                     'current_time': current_time
                 }
-                goals_done.insert_one(goals_finish)
+             goals_done.insert_one(goals_finish)
+             flag2 = True
      
 
 
 
-         if g3: 
+        if g3: 
             print(g3)
             print(goal_3)
-            current_date = datetime.now().strftime("%Y-%m-%d")
-            current_time = datetime.now().strftime("%H:%M:%S")
-         #    return f"Current time and date: {current_time}"
+            # current_date = datetime.now().strftime("%Y-%m-%d")
+            # current_time = datetime.now().strftime("%H:%M:%S")
+
+            current_date = '2024-04-08'
+            current_time = '04:23:06'
             print(current_date)
             print(current_time)
      
             username = current_user.username
-            goals_finish = {
-           'username' : username,    
-            'goal3': g3,
-            'goal_assigned': goal_3,
-            'current_date': current_date,
-            'current_time': current_time,
-            }
+           # Check if a document exists for the current username and current date
+            existing_goal_doc = goals_done.find_one({'username': username, 'current_date': current_date})
+                
+            if existing_goal_doc:
+                  # Update the existing document with the new goal
+                   goals_done.update_one(
+                      {'_id': existing_goal_doc['_id']},
+                      {'$set': {'goal3': g3, 'goal_assigned3': goal_3}}
+                   )
+            else:
+                   # Insert a new document with the new goal
+                   goals_finish = {
+                       'username': username,
+                       'current_date': current_date,
+                       'goal3': g3,
+                       'goal_assigned3': goal_3,
+                       'current_time': current_time
+                   }
+                   goals_done.insert_one(goals_finish)
+                   flag3 = True
 
 
 
-         if g4: 
+
+
+        if g4: 
             print(g4)
             print(goal_4)
-            current_date = datetime.now().strftime("%Y-%m-%d")
-            current_time = datetime.now().strftime("%H:%M:%S")
-         #    return f"Current time and date: {current_time}"
+            # current_date = datetime.now().strftime("%Y-%m-%d")
+            # current_time = datetime.now().strftime("%H:%M:%S")
+            current_date = '2024-04-08'
+            current_time = '04:23:06'
+
+
             print(current_date)
             print(current_time)
 
             username = current_user.username
-            goals_finish = {
-            'username' : username,    
-            'goal4': g4,
-            'goal_assigned': goal_4,
-            'current_date': current_date,
-            'current_time': current_time,
-            }
+           # Check if a document exists for the current username and current date
+            existing_goal_doc = goals_done.find_one({'username': username, 'current_date': current_date})
+                
+            if existing_goal_doc:
+                  # Update the existing document with the new goal
+                   goals_done.update_one(
+                      {'_id': existing_goal_doc['_id']},
+                       {'$set': {'goal4': g4, 'goal_assigned4': goal_4}}
+                   )
+            else:
+                   # Insert a new document with the new goal
+                   goals_finish = {
+                       'username': username,
+                       'current_date': current_date,
+                       'goal4': g4,
+                       'goal_assigned4': goal_4,
+                       'current_time': current_time
+                   }
+                   goals_done.insert_one(goals_finish)
+                   flag4 = True
 
 
 
 
-         if g5: 
+        if g5: 
+            
             print(g5)
             print(goal_5)
             current_date = datetime.now().strftime("%Y-%m-%d")
@@ -442,21 +502,36 @@ def profile():
             print(current_time)
 
             username = current_user.username
-            goals_finish = {
-            'username' : username,    
-            'goal5': g5,
-            'goal_assigned': goal_5,
-            'current_date': current_date,
-            'current_time': current_time,
-            }
+           # Check if a document exists for the current username and current date
+            existing_goal_doc = goals_done.find_one({'username': username, 'current_date': current_date})
+                
+            if existing_goal_doc:
+                  # Update the existing document with the new goal
+                   goals_done.update_one(
+                      {'_id': existing_goal_doc['_id']},
+                       {'$set': {'goal5': g5, 'goal_assigned5': goal_5}}
+                   )
+            else:
+                   # Insert a new document with the new goal
+                   goals_finish = {
+                       'username': username,
+                       'current_date': current_date,
+                       'goal5': g5,
+                       'goal_assigned5': goal_5,
+                       'current_time': current_time
+                   }
+                   goals_done.insert_one(goals_finish)
+                   flag5 = True
+          
+      else:
+        pass
 
 
 
 
 
 
-
-   return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
+   return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5,flag1=flag1,flag2=flag2,flag3=flag3,flag4=flag4,flag5=flag5)
   
 
     
@@ -838,6 +913,22 @@ def add_goal():
 
 
 
+
+
+
+
+
+
+
+# ----------- search track goals done by user ---------- 
+@app.route('/search', methods=['POST','GET'])
+def search():
+    if request.method=='POST':
+     username = request.form.get('username')
+     user_data = goals_done.find({'username': username})
+     return render_template('results.html', username=username, user_data=user_data)
+    if request.method=='GET':
+     return render_template('search.html')
 
 
 
