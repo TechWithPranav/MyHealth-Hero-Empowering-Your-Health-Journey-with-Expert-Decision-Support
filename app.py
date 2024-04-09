@@ -88,9 +88,9 @@ def predictor(text):
     # Predict using the model
     prediction = model.predict(processed_text_vectorized)
     if prediction[0] == 1:
-        return "It seems that mentally you are not well. We suggest you to consult the therapist."
+        return "not well"
     elif prediction[0] == 0:
-        return "It seems that you are mentally fit. But if you think mentally you are not well you can still consult the therapist."
+        return "fit"
 
 
 
@@ -234,7 +234,14 @@ def profile():
    flag2 = None
    flag3 = None
    flag4 = None
-   flag5 = None    
+   flag5 = None
+
+   s1 = None
+   s2 = None
+   s3 = None
+   s4 = None
+   s5 = None
+
 
 # Initialize index variables
    if 'i1' not in session:
@@ -275,7 +282,26 @@ def profile():
         goal_4 = goal4[session['i4']] if goal4 else None
         goal_5 = goal5[session['i5']] if goal5 else None
 
-        return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5)
+        
+        # Convert date string to datetime object
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        current_username = current_user.username
+    
+        # Query MongoDB based on username and date
+        goal_done_per_date = goals_done.find_one({'username':current_username , 'current_date':current_date })
+        print(goal_done_per_date)
+        if goal_done_per_date.get('goal_assigned1'):
+            s1 = True
+        if goal_done_per_date.get('goal_assigned2'):
+            s2 = True
+        if goal_done_per_date.get('goal_assigned3'):
+            s3 = True
+        if goal_done_per_date.get('goal_assigned4'):
+            s4 = True
+        if goal_done_per_date.get('goal_assigned5'):
+            s5 = True
+
+        return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5,s1 = s1,s2=s2,s3=s3,s4=s4,s5=s5)
 
    # Handle POST requests
    if request.method == 'POST':
@@ -291,6 +317,7 @@ def profile():
      g4 = request.form.get('goal4_main')
     
      g5 = request.form.get('goal5_main')
+
 
 
      
@@ -326,6 +353,7 @@ def profile():
 
 
 # -------- for goals done or not for theripist giving ---------
+
       donebtn = None
       
       flag1 = None
@@ -336,9 +364,32 @@ def profile():
       donebtn = request.form.get('done_btn')  # Get the value or None if not found
 
       print(donebtn)
+
+  
       if donebtn:
   
 
+        if g1:
+         session['i1'] -= 1
+         print(session['i1'])
+        if g2:
+         session['i2'] -= 1
+         print(session['i2'])
+        if g3:
+         session['i3'] -= 1
+         print(session['i3'])
+        if g4:
+         session['i4'] -= 1
+         print(session['i4'])
+        if g5:
+         session['i5'] -= 1
+         print(session['i5'])
+
+        goal_1 = goal1[session['i1']] if goal1 and len(goal1) > session['i1'] else None
+        goal_2 = goal2[session['i2']] if goal2 and len(goal2) > session['i2'] else None
+        goal_3 = goal3[session['i3']] if goal3 and len(goal3) > session['i3'] else None
+        goal_4 = goal4[session['i4']] if goal4 and len(goal4) > session['i4'] else None
+        goal_5 = goal5[session['i5']] if goal5 and len(goal5) > session['i5'] else None
 
         if g1: 
          
@@ -527,11 +578,30 @@ def profile():
         pass
 
 
+     # --------- for done tick ---------     
+
+        # Convert date string to datetime object
+     current_date = datetime.now().strftime("%Y-%m-%d")
+     current_username = current_user.username  
+        
+        # Query MongoDB based on username and date
+     goal_done_per_date = goals_done.find_one({'username': current_username, 'current_date': current_date})
+     print(goal_done_per_date)
+     if goal_done_per_date.get('goal_assigned1'):
+            s1 = True
+     if goal_done_per_date.get('goal_assigned2'):
+            s2 = True
+     if goal_done_per_date.get('goal_assigned3'):
+            s3 = True
+     if goal_done_per_date.get('goal_assigned4'):
+            s4 = True
+     if goal_done_per_date.get('goal_assigned5'):
+            s5 = True
 
 
 
 
-   return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5,flag1=flag1,flag2=flag2,flag3=flag3,flag4=flag4,flag5=flag5)
+   return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5,flag1=flag1,flag2=flag2,flag3=flag3,flag4=flag4,flag5=flag5,s1 = s1,s2=s2,s3=s3,s4=s4,s5=s5)
   
 
     

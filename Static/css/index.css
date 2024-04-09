@@ -21,17 +21,17 @@ body {
   
   /* Carousel base class */
   .carousel {
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem;
     margin-top: 1.5rem;
     margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-right: 1.5rem; */
 
     
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
     bottom: 3rem;
-    z-index: 10;
+    /* z-index: 10; */
 }
 
 /* Declare heights because of positioning of img element */
@@ -70,7 +70,7 @@ body {
   font-weight: 700;
   line-height: 56px;
   color: #222222;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
 }
 
 #hero h1 span {
@@ -85,7 +85,7 @@ body {
 }
 
 #hero .btn-get-started {
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
   text-transform: uppercase;
   font-weight: 500;
   font-size: 14px;
@@ -217,6 +217,9 @@ body {
   border-radius: 8px;
   z-index: 1;
 }
+.featured-services .icon-box:hover {
+  cursor: pointer;
+}
 
 .featured-services .icon-box::before {
   content: "";
@@ -261,6 +264,7 @@ body {
   font-size: 15px;
   line-height: 28px;
   margin-bottom: 0;
+  
 }
 
 .featured-services .icon-box:hover .title a,

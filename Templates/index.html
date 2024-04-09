@@ -12,6 +12,8 @@
   
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+
 </head>
 
 <body>
@@ -29,20 +31,20 @@
 
         <!-- ------------ home section -------------------  -->
 
-        <div class="container">
-          <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="container" style=" width: 100%; height: 100%; margin-top: 20px;">
+          <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" style=" ">
               <div class="carousel-indicators">
                   <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1"></button>
                   <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
               </div>
-              <div class="carousel-inner rounded">
+              <div class="carousel-inner rounded" style="">
                   <div class="carousel-item active">
                       <img src="{{ url_for('static', filename='images/bg1_main2.jpg') }}" class="" width="100%" height="100%" alt="" srcset="">
                       <div class="container">
                           <div class="carousel-caption text-center" style="display: flex;justify-content: center; flex-direction: column; align-content:flex-start;  height: 120%;">
-                              <!-- <h1 style="color: rgb(255, 253, 253);" class="balsamiq-sans-bold">Embrace Your Inner Harmony</h1>
-                              <p class="opacity-30 balsamiq-sans-bold" style="color: rgb(255, 255, 255);font-size: 25px;">"Empowering Minds, Nurturing Wellness: Your Journey to Mental Well-being Starts Here!"</p> -->
-                           <!--<p><a class="btn btn-lg btn-outline balsamiq-sans-bold" href="#">Start Exploring</a></p>-->
+                              <!-- <h1 style="color: rgb(255, 253, 253);" class="nunito-font">Embrace Your Inner Harmony</h1>
+                              <p class="opacity-30 nunito-font" style="color: rgb(255, 255, 255);font-size: 25px;">"Empowering Minds, Nurturing Wellness: Your Journey to Mental Well-being Starts Here!"</p> -->
+                           <!--<p><a class="btn btn-lg btn-outline nunito-font" href="#">Start Exploring</a></p>-->
                           </div>
                       </div>
                   </div>
@@ -50,9 +52,9 @@
                       <img src="{{ url_for('static', filename='images/bg2_main2.jpg') }}" class="" width="100%" height="100%" alt="" srcset="">
                       <div class="container">
                           <div class="carousel-caption " style="display: flex;justify-content: center; flex-direction: column; align-content:flex-start;  height: 120%;">
-                              <!-- <h1 style="color: black" class="balsamiq-sans-bold"> Empowering Minds, Erasing Stigma</h1> -->
-                             <!-- <p style="color: black;font-size: 25px;" class="balsamiq-sans-bold"></p>
-                              <p><a class="btn btn-lg btn-outline-success balsamiq-sans-bold" href="#"></a></p>--> 
+                              <!-- <h1 style="color: black" class="nunito-font"> Empowering Minds, Erasing Stigma</h1> -->
+                             <!-- <p style="color: black;font-size: 25px;" class="nunito-font"></p>
+                              <p><a class="btn btn-lg btn-outline-success nunito-font" href="#"></a></p>--> 
                           </div>
                       </div>
                   </div>
@@ -81,27 +83,27 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-md-6 order-md-1">
-                <h1 class="display-4 fw-bold mb-4 text-uppercase about-us-title balsamiq-sans-bold">About <span class="text-primary balsamiq-sans-bold">US</span></h1>
-                <p class="lead balsamiq-sans-bold">Overview</p>
-                <p class=" balsamiq-sans-bold opacity-75">We are a team passionate about creating solutions for everyday problems. Mental health and wellness are integral components of overall well-being. They encompass emotional, psychological, and social well-being, influencing how we think, feel, and act.</p>
-                <p class="balsamiq-sans-bold">Benefits</p>
+                <h1 class="display-4 fw-bold mb-4 text-uppercase about-us-title nunito-font">About <span class="text-primary nunito-font">US</span></h1>
+                <p class="lead nunito-font">Overview</p>
+                <p class=" nunito-font opacity-75">We are a team passionate about creating solutions for everyday problems. Mental health and wellness are integral components of overall well-being. They encompass emotional, psychological, and social well-being, influencing how we think, feel, and act.</p>
+                <p class="nunito-font">Benefits</p>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item text-muted balsamiq-sans-bold">
+                  <li class="list-group-item text-muted nunito-font">
                     <i class="fas fa-check-circle text-primary me-2"></i> Emotional well-being
                   </li>
-                  <li class="list-group-item text-muted balsamiq-sans-bold"  style="text-decoration: none;">
+                  <li class="list-group-item text-muted nunito-font"  style="text-decoration: none;">
                     <i class="fas fa-sync-alt text-primary me-2 "></i> Community Connection
                   </li>
-                  <li class="list-group-item text-muted balsamiq-sans-bold">
+                  <li class="list-group-item text-muted nunito-font">
                     <i class="fas fa-handshake text-primary me-2 "></i> Accessible Anytime, Anywhere
                   </li>
                 </ul>
-                <a href="#" class="btn btn-primary mt-4 balsamiq-sans-bold">Download the App Now</a>
+                <a href="#" class="btn btn-primary mt-4 nunito-font">Download the App Now</a>
               </div>
               <div class="col-md-6 order-md-2 mb-4 mb-md-0">
                 <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm about-video">
                   <!-- <iframe id="videoPlayer" width="560" height="315" src="{{ url_for('static', filename='abt_video.mp4') }}" title="Lost & Found App Demo" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                  <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/1i9OktVsTWo" title="Mental Health" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/PtlJN6uc3QE" title="Mental Health" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
              <!-- -------- NOTE : here we have to use above url which contains embed in it otherwise url will not show---- -->
              
                 </div>
@@ -119,11 +121,11 @@
        <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
       <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <h1>Welcome to <span>MyHealth Hero </span> wellness</h1>
-        <h2 style="color:#2b2121;">Advancing Technology for Humanity</h2>
-        <h2 style="color:#1727b1;">Understanding Common Mental Health Disorders</h2>
-        <div class="d-flex">
-          <a href="/mental" class="btn-get-started scrollto" style="text-decoration: none;">Test Yourself</a>
+        <h1 class="nunito-font">Welcome to <span>MyHealth Hero </span> wellness</h1>
+        <h2 style="color:#2b2121;" class="nunito-font">Advancing Technology for Humanity</h2>
+        <h2 style="color:#1727b1;" class="nunito-font">Understanding Common Mental Health Disorders</h2>
+        <div class="d-flex nunito-font">
+          <a href="/mental" class="btn-get-started scrollto nunito-font" style="text-decoration: none;">Test Yourself</a>
   
          <!--  <a href="#" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
         </div>
@@ -145,59 +147,59 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                   <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4 class="title"><a href="https://www.cdc.gov/ncbddd/adhd/facts.html#:~:text=ADHD%20is%20one%20of%20the,)%2C%20or%20be%20overly%20active.">Attention-Deficit/Hyperactivity Disorder (ADHD):</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;"> ADHD is characterized by persistent patterns of inattention, hyperactivity, and impulsivity that interfere with daily functioning and development. Symptoms often appear in childhood and can continue into adulthood.</p>
+                  <h4 class="title nunito-font fw-bolder"><a href="https://www.cdc.gov/ncbddd/adhd/facts.html#:~:text=ADHD%20is%20one%20of%20the,)%2C%20or%20be%20overly%20active.">Attention-Deficit/Hyperactivity Disorder (ADHD):</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;"> ADHD is characterized by persistent patterns of inattention, hyperactivity, and impulsivity that interfere with daily functioning and development. Symptoms often appear in childhood and can continue into adulthood.</p>
                 </div>
               </div>
     
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                   <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                  <h4 class="title"><a href="https://www.psychiatry.org/patients-families/obsessive-compulsive-disorder/what-is-obsessive-compulsive-disorder">Obsessive-Compulsive Disorder (OCD):</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">OCD involves recurrent, intrusive thoughts (obsessions) and repetitive behaviors or mental acts (compulsions) performed to alleviate anxiety or prevent perceived harm. These behaviors can significantly disrupt daily life.</p>
+                  <h4 class="title nunito-font"><a href="https://www.psychiatry.org/patients-families/obsessive-compulsive-disorder/what-is-obsessive-compulsive-disorder">Obsessive-Compulsive Disorder (OCD):</a></h4>
+                  <p class="description  nunito-font" style="text-align: justify; text-justify: inter-word;">OCD involves recurrent, intrusive thoughts (obsessions) and repetitive behaviors or mental acts (compulsions) performed to alleviate anxiety or prevent perceived harm. These behaviors can significantly disrupt daily life.</p>
                 </div>
               </div>
     
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                   <div class="icon"><i class="bx bx-file"></i></div>
-                  <h4 class="title"><a href="https://bbrfoundation.org/faq/frequently-asked-questions-about-bipolar-disorder?gad_source=1&gclid=CjwKCAjwwr6wBhBcEiwAfMEQs4rMLcO5Q6tMv_Hptb6jgv7Y_zZgNSqGKvQDTrUakh7VRBFZlybwNhoCBQoQAvD_BwE"> Bipolar Disorder:</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">Bipolar disorder, formerly known as manic-depressive illness, is marked by mood swings between episodes of depression and mania or hypomania. Depressive episodes involve sadness, hopelessness, and loss of interest, while manic or hypomanic episodes involve elevated mood, increased energy, and impulsivity.</p>
+                  <h4 class="title nunito-font"><a href="https://bbrfoundation.org/faq/frequently-asked-questions-about-bipolar-disorder?gad_source=1&gclid=CjwKCAjwwr6wBhBcEiwAfMEQs4rMLcO5Q6tMv_Hptb6jgv7Y_zZgNSqGKvQDTrUakh7VRBFZlybwNhoCBQoQAvD_BwE"> Bipolar Disorder:</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;">Bipolar disorder, formerly known as manic-depressive illness, is marked by mood swings between episodes of depression and mania or hypomania. Depressive episodes involve sadness, hopelessness, and loss of interest, while manic or hypomanic episodes involve elevated mood, increased energy, and impulsivity.</p>
                  </div>
               </div>
     
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon"><i class="bx bx-tachometer"></i></div>
-                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/borderline-personality-disorder#:~:text=What%20is%20borderline%20personality%20disorder,impact%20their%20relationships%20with%20others.">Borderline Personality Disorder (BPD):</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">BPD is characterized by unstable relationships, self-image, and emotions, along with impulsivity and intense fear of abandonment. Individuals with BPD may experience mood swings, impulsivity, self-harm, and difficulty regulating emotions.</p>   </div>
+                  <h4 class="title nunito-font"><a href="https://www.nimh.nih.gov/health/topics/borderline-personality-disorder#:~:text=What%20is%20borderline%20personality%20disorder,impact%20their%20relationships%20with%20others.">Borderline Personality Disorder (BPD):</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;">BPD is characterized by unstable relationships, self-image, and emotions, along with impulsivity and intense fear of abandonment. Individuals with BPD may experience mood swings, impulsivity, self-harm, and difficulty regulating emotions.</p>   </div>
               </div>
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                   <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/anxiety-disorders">Anxiety Disorders:</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">Anxiety disorders involve excessive fear, worry, or nervousness that can interfere with daily activities and quality of life. Common types include generalized anxiety disorder (GAD), panic disorder, social anxiety disorder, and specific phobias.</p>
+                  <h4 class="title nunito-font"><a href="https://www.nimh.nih.gov/health/topics/anxiety-disorders">Anxiety Disorders:</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;">Anxiety disorders involve excessive fear, worry, or nervousness that can interfere with daily activities and quality of life. Common types include generalized anxiety disorder (GAD), panic disorder, social anxiety disorder, and specific phobias.</p>
                 </div>
               </div>
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                   <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                  <h4 class="title"><a href="https://www.psychiatry.org/patients-families/depression/what-is-depression">Depressive Disorders:</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">Depressive disorders, including major depressive disorder and persistent depressive disorder, involve persistent feelings of sadness, hopelessness, and loss of interest or pleasure in activities. These conditions can significantly impair functioning and may require treatment.</p>
+                  <h4 class="title nunito-font"><a href="https://www.psychiatry.org/patients-families/depression/what-is-depression">Depressive Disorders:</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;">Depressive disorders, including major depressive disorder and persistent depressive disorder, involve persistent feelings of sadness, hopelessness, and loss of interest or pleasure in activities. These conditions can significantly impair functioning and may require treatment.</p>
                 </div>
               </div>
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                   <div class="icon"><i class="bx bx-file"></i></div>
-                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/eating-disorders#:~:text=Eating%20disorders%20are%20actually%20serious,also%20signal%20an%20eating%20disorder.">Eating Disorders:</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">Eating disorders such as anorexia nervosa, bulimia nervosa, and binge-eating disorder involve unhealthy attitudes and behaviors related to food, weight, and body image. These conditions can have serious physical and emotional consequences.</p>
+                  <h4 class="title nunito-font"><a href="https://www.nimh.nih.gov/health/topics/eating-disorders#:~:text=Eating%20disorders%20are%20actually%20serious,also%20signal%20an%20eating%20disorder.">Eating Disorders:</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;">Eating disorders such as anorexia nervosa, bulimia nervosa, and binge-eating disorder involve unhealthy attitudes and behaviors related to food, weight, and body image. These conditions can have serious physical and emotional consequences.</p>
                 </div>
               </div>
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon"><i class="bx bx-tachometer"></i></div>
-                  <h4 class="title"><a href="https://www.nimh.nih.gov/health/topics/substance-use-and-mental-health#:~:text=Substance%20use%20disorder%20(SUD)%20is,drugs%2C%20alcohol%2C%20or%20medications.">Substance Use Disorders:</a></h4>
-                  <p class="description" style="text-align: justify; text-justify: inter-word;">Substance use disorders involve problematic use of alcohol, drugs, or other substances, leading to significant impairment or distress. These disorders can range from mild to severe and often require professional intervention for treatment and recovery.</p>
+                  <h4 class="title nunito-font"><a href="https://www.nimh.nih.gov/health/topics/substance-use-and-mental-health#:~:text=Substance%20use%20disorder%20(SUD)%20is,drugs%2C%20alcohol%2C%20or%20medications.">Substance Use Disorders:</a></h4>
+                  <p class="description nunito-font" style="text-align: justify; text-justify: inter-word;">Substance use disorders involve problematic use of alcohol, drugs, or other substances, leading to significant impairment or distress. These disorders can range from mild to severe and often require professional intervention for treatment and recovery.</p>
                 </div>
               </div>
             </div>
@@ -208,48 +210,48 @@
         <!-- ----------------------- how it works ------------------  -->
         <section class="how-it-works d-flex flex-column justify-content-center align-items-center py-5 mt-5" id="how-it-works">
           <div class="container">
-            <h1 class="display-4 fw-bold mb-5 text-uppercase about-us-title balsamiq-sans-bold text-center">How It <span class="text-primary balsamiq-sans-bold">Works</span></h1>
+            <h1 class="display-4 fw-bold mb-5 text-uppercase about-us-title nunito-font text-center">How It <span class="text-primary nunito-font">Works</span></h1>
             <div class="row">
               <div class="col-md-4 mb-4">
                 <div class="step text-center rounded shadow-sm p-4">
                   <i class="fas fa-brain text-primary mb-3 fa-3x"></i>
-                  <h3>Assess Your Mental Health</h3>
-                  <p class="text-muted">Begin your journey by assessing your mental health with our comprehensive evaluation tools, gaining insights into your emotional well-being.</p>
+                  <h3 class="nunito-font">Assess Your Mental Health</h3>
+                  <p class="text-muted nunito-font">Begin your journey by assessing your mental health with our comprehensive evaluation tools, gaining insights into your emotional well-being.</p>
                 </div>
               </div>
               <div class="col-md-4 mb-4">
                 <div class="step text-center rounded shadow-sm p-4">
                   <i class="fas fa-users text-primary mb-3 fa-3x"></i>
-                  <h3>Connect with a Supportive Community</h3>
-                  <p class="text-muted">Join our vibrant community of individuals dedicated to mental wellness. Share experiences, find support, and foster meaningful connections.</p>
+                  <h3 class="nunito-font">Connect with a Supportive Community</h3>
+                  <p class="text-muted nunito-font">Join our vibrant community of individuals dedicated to mental wellness. Share experiences, find support, and foster meaningful connections.</p>
                 </div>
               </div>
               <div class="col-md-4 mb-4">
                 <div class="step text-center rounded shadow-sm p-4">
                   <i class="fas fa-book-reader text-primary mb-3 fa-3x"></i>
-                  <h3>Access Resources and Guidance</h3>
-                  <p class="text-muted">Explore a wealth of resources, including articles, videos, and guided exercises, curated to promote self-care, resilience, and personal growth.</p>
+                  <h3 class="nunito-font">Access Resources and Guidance</h3>
+                  <p class="text-muted nunito-font">Explore a wealth of resources, including articles, videos, and guided exercises, curated to promote self-care, resilience, and personal growth.</p>
                 </div>
               </div>
               <div class="col-md-4 mb-4">
                 <div class="step text-center rounded shadow-sm p-4">
                   <i class="fas fa-comments text-primary mb-3 fa-3x"></i>
-                  <h3>Engage in Confidential Support</h3>
-                  <p class="text-muted">Connect with licensed professionals for confidential support and guidance through secure, private messaging or virtual sessions.</p>
+                  <h3 class="nunito-font">Engage in Confidential Support</h3>
+                  <p class="text-muted nunito-font">Connect with licensed professionals for confidential support and guidance through secure, private messaging or virtual sessions.</p>
                 </div>
               </div>
               <div class="col-md-4 mb-4">
                 <div class="step text-center rounded shadow-sm p-4">
                   <i class="fas fa-calendar-check text-primary mb-3 fa-3x"></i>
-                  <h3>Set Goals and Track Progress</h3>
-                  <p class="text-muted">Set achievable goals and track your progress using our intuitive tools. Celebrate milestones and stay motivated on your journey to mental well-being.</p>
+                  <h3 class="nunito-font">Set Goals and Track Progress</h3>
+                  <p class="text-muted nunito-font">Set achievable goals and track your progress using our intuitive tools. Celebrate milestones and stay motivated on your journey to mental well-being.</p>
                 </div>
               </div>
               <div class="col-md-4 mb-4">
                 <div class="step text-center rounded shadow-sm p-4">
                   <i class="fas fa-heart text-primary mb-3 fa-3x"></i>
-                  <h3>Nurture Your Mental Wellness</h3>
-                  <p class="text-muted">Prioritize your mental well-being and discover practices for self-compassion, mindfulness, and stress reduction. Cultivate a healthier, happier life.</p>
+                  <h3 class="nunito-font">Nurture Your Mental Wellness</h3>
+                  <p class="text-muted nunito-font ">Prioritize your mental well-being and discover practices for self-compassion, mindfulness, and stress reduction. Cultivate a healthier, happier life.</p>
                 </div>
               </div>
             </div>
@@ -267,8 +269,8 @@
         <!-- ------------- testimonials -----------------------  -->
   
         <div class="rev-section mt-5">
-          <h2 class="title balsamiq-sans-bold fs-1 ">MyHealth-Hero <span class="text-primary balsamiq-sans-bold">Testimonials</span></h2>
-          <p class="note balsamiq-sans-bold ">Discover how our mental health and wellness platform has positively impacted individuals on their journey to well-being.</p>
+          <h2 class="title nunito-font fs-1 ">MyHealth-Hero <span class="text-primary nunito-font">Testimonials</span></h2>
+          <p class="note nunito-font ">Discover how our mental health and wellness platform has positively impacted individuals on their journey to well-being.</p>
           
           <div class="reviews">
             <div class="review">
@@ -276,8 +278,8 @@
                 <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80" width="250px">
               </div>
               <div class="body-review">
-                <div class="name-review balsamiq-sans-bold ">Emma W.</div>
-                <div class="place-review balsamiq-sans-bold ">United States</div>
+                <div class="name-review nunito-font ">Emma W.</div>
+                <div class="place-review nunito-font ">United States</div>
                 <div class="rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -285,7 +287,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half"></i>
                 </div>
-                <div class="desc-review balsamiq-sans-bold ">Thanks to this platform MyHealth Hero , I've been able to prioritize my mental health like never before. From guided meditation to personalized resources, it's been a game-changer for my well-being journey.</div>
+                <div class="desc-review nunito-font ">Thanks to this platform MyHealth Hero , I've been able to prioritize my mental health like never before. From guided meditation to personalized resources, it's been a game-changer for my well-being journey.</div>
               </div>
             </div>
         
@@ -294,8 +296,8 @@
                 <img src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" width="250px">
               </div>
               <div class="body-review">
-                <div class="name-review balsamiq-sans-bold ">Michael L.</div>
-                <div class="place-review balsamiq-sans-bold ">Canada</div>
+                <div class="name-review nunito-font ">Michael L.</div>
+                <div class="place-review nunito-font ">Canada</div>
                 <div class="rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -303,7 +305,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                 </div>
-                <div class="desc-review balsamiq-sans-bold ">This platform has been a lifeline for me during tough times. The community support and resources have helped me navigate my mental health challenges with more confidence and resilience.</div>
+                <div class="desc-review nunito-font ">This platform has been a lifeline for me during tough times. The community support and resources have helped me navigate my mental health challenges with more confidence and resilience.</div>
               </div>
             </div>
         
@@ -312,8 +314,8 @@
                 <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" width="250px">
               </div>
               <div class="body-review">
-                <div class="name-review balsamiq-sans-bold ">Sophia K.</div>
-                <div class="place-review balsamiq-sans-bold ">United Kingdom</div>
+                <div class="name-review nunito-font ">Sophia K.</div>
+                <div class="place-review nunito-font ">United Kingdom</div>
                 <div class="rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -321,7 +323,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half"></i>
                 </div>
-                <div class="desc-review balsamiq-sans-bold ">I'm incredibly grateful for this platform and its role in my mental wellness journey. The guidance and tools provided have empowered me to take control of my mental health and lead a more fulfilling life.</div>
+                <div class="desc-review nunito-font ">I'm incredibly grateful for this platform and its role in my mental wellness journey. The guidance and tools provided have empowered me to take control of my mental health and lead a more fulfilling life.</div>
               </div>
             </div>
           </div>
@@ -340,17 +342,15 @@
         <style>
           .nav-link {
               box-shadow: inset 0 0 0 0  #378CE7;
-              /* color: #54b3d6; */
               color: #378CE7;
-              /* margin: 0 -0.15rem; */
-              /* font-size: larger; */
+
               font-weight: 600;
               padding: 0 -0.25rem;
               transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
           }
           
           .nav-link:hover {
-              box-shadow: inset 190px 0 0 0 #378CE7;
+              box-shadow: inset 2700px 0 0 0 #378CE7;
               color: white;
           }
           
@@ -363,7 +363,6 @@
               display: flex;
               justify-content: center;
               gap: 1em;
-              /* border: 4px solid red; */
               width: 100%;
           }
           

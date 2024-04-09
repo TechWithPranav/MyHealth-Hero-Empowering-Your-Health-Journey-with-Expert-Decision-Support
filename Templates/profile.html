@@ -163,7 +163,10 @@ transform: translateY(-5px); /* Further lift on hover */
           <!-- <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" disabled>Done</button> -->
           <!-- {% else %} -->
           <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" >Done</button>
+          {% if s1 %}
             
+          <i class="fa fa-check" aria-hidden="true"></i>
+          {% endif %}
           <!-- {% endif %} -->
         </form>
       </li>
@@ -171,13 +174,13 @@ transform: translateY(-5px); /* Further lift on hover */
         <form class="d-inline" action="/profile" method="post">
           <input type="hidden" name="goal2_main" value="goal2">
           <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: 3%;">Alternative</button>
-          <!-- {% if flag2 %} -->
-            
-          <!-- <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" disabled>Done</button> -->
-          <!-- {% else %} -->
+
           <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" >Done</button>
+          {% if s2 %}
             
-          <!-- {% endif %} -->
+          <i class="fa fa-check" aria-hidden="true"></i>
+          {% endif %}
+   
         </form>
       </li>
       <li class="list-group-item goal-item">{{goal_3}}
@@ -189,7 +192,10 @@ transform: translateY(-5px); /* Further lift on hover */
           <!-- <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" disabled>Done</button> -->
           <!-- {% else %} -->
           <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" >Done</button>
+          {% if s3 %}
             
+          <i class="fa fa-check" aria-hidden="true"></i>
+          {% endif %}
           <!-- {% endif %} -->
 
       </li>
@@ -203,6 +209,10 @@ transform: translateY(-5px); /* Further lift on hover */
           <!-- <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" disabled>Done</button> -->
           <!-- {% else %} -->
           <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" >Done</button>
+          {% if s4 %}
+            
+          <i class="fa fa-check" aria-hidden="true"></i>
+          {% endif %}
             
           <!-- {% endif %} -->
 
@@ -218,7 +228,10 @@ transform: translateY(-5px); /* Further lift on hover */
           <!-- <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" disabled>Done</button> -->
           <!-- {% else %} -->
           <button type="submit" class="btn btn-sm btn-info alternative-goal-btn" style="margin-right: -3%;" name="done_btn" value="done_btn" >Done</button>
+          {% if s5 %}
             
+          <i class="fa fa-check" aria-hidden="true"></i>
+          {% endif %}
           <!-- {% endif %} -->
         </form>
       </li>
