@@ -88,9 +88,9 @@ def predictor(text):
     # Predict using the model
     prediction = model.predict(processed_text_vectorized)
     if prediction[0] == 1:
-        return "not well"
+        return "Based on our assessment, it appears that you are currently experiencing stress. We recommend seeking support and exploring coping strategies to manage this effectively."
     elif prediction[0] == 0:
-        return "fit"
+        return "Our evaluation indicates that you are not currently experiencing significant stress. However, it's essential to continue practicing self-care and maintaining healthy habits to sustain your mental well-being."
 
 
 
@@ -290,15 +290,19 @@ def profile():
         # Query MongoDB based on username and date
         goal_done_per_date = goals_done.find_one({'username':current_username , 'current_date':current_date })
         print(goal_done_per_date)
-        if goal_done_per_date.get('goal_assigned1'):
+        if goal_done_per_date == None:
+            pass
+        else:
+
+         if goal_done_per_date.get('goal_assigned1'):
             s1 = True
-        if goal_done_per_date.get('goal_assigned2'):
+         if goal_done_per_date.get('goal_assigned2'):
             s2 = True
-        if goal_done_per_date.get('goal_assigned3'):
+         if goal_done_per_date.get('goal_assigned3'):
             s3 = True
-        if goal_done_per_date.get('goal_assigned4'):
+         if goal_done_per_date.get('goal_assigned4'):
             s4 = True
-        if goal_done_per_date.get('goal_assigned5'):
+         if goal_done_per_date.get('goal_assigned5'):
             s5 = True
 
         return render_template('profile.html', user_data=user_data, doctor_name=doctor_name, time_slot=time_slot, concern=concern, google_meet_link=google_meet_link,goal_1=goal_1,goal_2=goal_2,goal_3=goal_3,goal_4=goal_4,goal_5=goal_5,s1 = s1,s2=s2,s3=s3,s4=s4,s5=s5)
@@ -583,7 +587,7 @@ def profile():
         # Convert date string to datetime object
      current_date = datetime.now().strftime("%Y-%m-%d")
      current_username = current_user.username  
-        
+
         # Query MongoDB based on username and date
      goal_done_per_date = goals_done.find_one({'username': current_username, 'current_date': current_date})
      print(goal_done_per_date)
@@ -638,13 +642,9 @@ def mental():
 
 
 # ---------- Analysis ----------- 
-# ---------- Analysis ----------- 
 @app.route('/analysis',methods=['GET','POST'])
 def analysis():
-    # Get the form data
-    # user_data = None
-    # if current_user.is_authenticated:  # Check if the user is authenticated
-    #     user_data = users_collection.find_one({'username': current_user.username})
+
     user_data = None  # Initialize user_data to None
     user = None
     user_data1 = None
@@ -668,16 +668,7 @@ def analysis():
         'dob':formatted_date
      }
      users_mental_data.insert_one(user_data1)
-    #  user_answers = users_mental_data.find_one({'user_data':current_user.username}) 
-    #  if user_answers == None:
-    #     users_mental_data.insert_one(user_data)
-    #  else:
-    #     # filter = {'user_data':current_user.username}
-    #     # update1 = {'$set': {'explanation': explanation}}
-    #     # update2 = {'$set': {'answers': answers}}
-    #     # users_mental_data.update_one(filter,update1)
-    #     # users_mental_data.update_one(filter,update2)
-    #     users_mental_data.inser
+
      
      if current_user.is_authenticated:  # Check if the user is authenticated
     
