@@ -50,10 +50,12 @@ login_manager.init_app(app)
 
 # ------ for prediction ------
 # Load the trained model
-model = joblib.load(r"C:\Users\prana\Desktop\prathmesh\prathmesh zip mental\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support-main\StressidentificationNLP")
+model = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\StressidentificationNLP")
+# model = joblib.load(r"StressidentificationNLP")
 
-# Load the vectorizer
-vectorizer = joblib.load(r"C:\Users\prana\Desktop\prathmesh\prathmesh zip mental\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support-main\TfidfVectorizer.joblib")
+# # Load the vectorizer
+vectorizer = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\TfidfVectorizer.joblib")
+# vectorizer = joblib.load(r"TfidfVectorizer.joblib")
 
 # Define preprocessing functions
 def text_process(text):
@@ -963,9 +965,6 @@ def set_goals():
 
     if current_user.is_authenticated:
         user_data = users_collection.find_one({'username': current_user.username})
-
-
-
     return render_template('set_goals.html',user_data=user_data)
 
 
@@ -983,12 +982,17 @@ def search_patient():
         username = request.form['username']
         patient_data = appointments_collection.find_one({'username': username})
 
-    # Prepare patient data as JSON
-    patient_details = {
-        'name': patient_data.get('username', ''),
-        'concern': patient_data.get('concern', '')
-    }
-
+    if patient_data:
+        # Prepare patient data as JSON
+        patient_details = {
+            'name': patient_data.get('username', ''),
+            'concern': patient_data.get('concern', '')
+        }
+    else:
+        # Handle the case where the patient is not found
+        patient_details = {
+            'error': 'Patient not found'
+        }
 
     # Return patient details as JSON response
     return jsonify(patient_details)

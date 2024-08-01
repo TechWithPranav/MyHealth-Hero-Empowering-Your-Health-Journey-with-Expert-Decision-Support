@@ -7,10 +7,12 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load the trained model
-model = joblib.load(r"D:\Nutun Hackathon\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support-main\StressidentificationNLP")
+# model = joblib.load(r"StressidentificationNLP")
+model = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\StressidentificationNLP")
 
 # Load the vectorizer
-vectorizer = joblib.load(r"D:\Nutun Hackathon\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support-main\TfidfVectorizer.joblib")
+# vectorizer = joblib.load(r"TfidfVectorizer.joblib")
+vectorizer = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\TfidfVectorizer.joblib")
 
 # Define preprocessing functions
 def text_process(text):
