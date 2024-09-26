@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\10_Projects\Main Projects\Decision support system (Mental Health)\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support\myenv
+set VIRTUAL_ENV=D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\myenv
 
 if not defined PROMPT set PROMPT=$P$G
 

@@ -50,8 +50,8 @@ login_manager.init_app(app)
 
 # ------ for prediction ------
 # Load the trained model
-model = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\StressidentificationNLP")
-# model = joblib.load(r"StressidentificationNLP")
+# model = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\StressidentificationNLP")
+model = joblib.load(r"StressidentificationNLP")
 
 # # Load the vectorizer
 vectorizer = joblib.load(r"D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\TfidfVectorizer.joblib")
@@ -628,12 +628,21 @@ def mental():
 
     if current_user.is_authenticated:  # Check if the user is authenticated
         user_data = users_collection.find_one({'username': current_user.username})
+        print(user_data)
 
     # Fetch questions from the database
     questions_cursor = mental_question_collection.find({}, {'_id': 0, 'question_text': 1})
+    # Safely handle missing 'question_text' using a check for the key
+    # print(list(questions_cursor))  # Print to inspect the data structure
 
-    # Extract the questions from the cursor
-    questions = [question['question_text'] for question in questions_cursor]
+
+
+
+# Safely extract the questions while ignoring entries without 'question_text'
+    questions = [question['question_text'] for question in questions_cursor if 'question_text' in question]
+    # print(questions)  # Now this should print the list of valid questions
+
+
 
     return render_template('mental.html', user_data=user_data, questions=enumerate(questions, start=1))
 
@@ -669,8 +678,26 @@ def analysis():
         'user_data' : user,
         'dob':formatted_date
      }
-     users_mental_data.insert_one(user_data1)
 
+    #  record = users_mental_data.find_one({'user_data':user})
+
+    #  if record!= None:
+    #   users_mental_data.update_one({'$set': user_data1})
+    #  else:
+    #   users_mental_data.insert_one(user_data1) 
+    #      # Perform upsert operation
+
+
+   # Use the user_data as a filter for the update
+     filter_query = {'user_data': user}
+
+        # Perform upsert operation
+     users_mental_data.update_one(
+            filter_query,
+            {'$set': user_data1},  # Use $set to update or insert the values
+            upsert=True  # Create a new document if no matching document is found
+     )   
+  
      
      if current_user.is_authenticated:  # Check if the user is authenticated
     
@@ -727,6 +754,7 @@ def analysis():
 # --------- doctor anaylysis ------------- 
 @app.route('/analysis_doctor',methods=['GET','POST'])
 def analysis_doctor():
+
     user_data = None  # Initialize user_data to None
 
     if current_user.is_authenticated:  # Check if the user is authenticated
@@ -753,9 +781,9 @@ def record():
         patient = request.form.get('patient')
         
         
-        user_answers = users_mental_data.find({'dob':formatted_date}) 
-        user_answer1 = user_answers[0] 
-        user_answer2 = user_answers[1]
+        user_answers = users_mental_data.find_one({'user_data':patient})
+        user_answer1 = None
+        user_answer2 = None
         print(user_answer1)
         print(user_answer2)
         # print(user_answers)
@@ -766,13 +794,13 @@ def record():
                q.append(question['question_text'])
             
             user_data1 = {
-                'answers':user_answer1[formatted_date],
+                'answers':user_answers[formatted_date],
                 'question' : q,
                 'user_data': patient,
                 'date':formatted_date
             }
             user_data2 = {
-                'answers':user_answer2[formatted_date],
+                'answers':user_answers[formatted_date],
                 'question' : q,
                 'user_data': patient,
                 'date':formatted_date

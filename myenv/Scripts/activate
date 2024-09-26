@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\10_Projects\Main Projects\Decision support system (Mental Health)\MyHealth-Hero-Empowering-Your-Health-Journey-with-Expert-Decision-Support\myenv"
+VIRTUAL_ENV="D:\10_Projects\Main Projects\Decision support system (Mental Health)\My_Health_Hero\myenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
